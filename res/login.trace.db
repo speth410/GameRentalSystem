@@ -1,6 +1,0 @@
-2019-10-03 18:30:38 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
-INSERT INTO USERS(USERNAME, PASSWORD) VALUES (?, ?) [42102-199]
-2019-10-03 18:32:22 jdbc[3]: exception
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" not found; SQL statement:
-SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ? [42102-199]
