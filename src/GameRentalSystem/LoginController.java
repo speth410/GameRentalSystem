@@ -36,6 +36,17 @@ public class LoginController {
   @FXML
   private JFXButton SignUp;
 
+    @FXML
+    void handleLoginMouseHover(MouseEvent event) {
+        btnLogin.setStyle("-fx-background-color: green");
+    }
+
+  @FXML
+  void handleLoginMouseExit(MouseEvent event) {
+      btnLogin.setStyle("-fx-background-color: transparent");
+
+  }
+
 
   @FXML
   void handleLoginClicked(MouseEvent event) {

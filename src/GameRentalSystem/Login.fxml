@@ -18,9 +18,9 @@
     </ImageView>
     <AnchorPane layoutX="563.0" layoutY="85.0" prefHeight="333.0" prefWidth="315.0">
       <children>
-        <JFXTextField fx:id="txtUserID" focusColor="WHITE" layoutX="62.0" layoutY="151.0" prefHeight="31.0" prefWidth="228.0" promptText="username" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
-        <JFXPasswordField fx:id="txtUserPass" focusColor="WHITE" layoutX="62.0" layoutY="209.0" prefHeight="31.0" prefWidth="228.0" promptText="password" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
-        <JFXButton fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onMouseClicked="#handleLoginClicked" text="Login" textFill="WHITE">
+        <JFXTextField fx:id="txtUserID" focusColor="WHITE" layoutX="62.0" layoutY="151.0" prefHeight="31.0" prefWidth="228.0" promptText="Username" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
+        <JFXPasswordField fx:id="txtUserPass" focusColor="WHITE" layoutX="62.0" layoutY="209.0" prefHeight="31.0" prefWidth="228.0" promptText="Password" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
+        <JFXButton fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onMouseClicked="#handleLoginClicked" onMouseEntered="#handleLoginMouseHover" onMouseExited="#handleLoginMouseExit" text="Login" textFill="WHITE">
           <font>
             <Font size="20.0" />
           </font>
