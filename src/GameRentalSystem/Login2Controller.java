@@ -57,8 +57,6 @@ public class Login2Controller {
         lblError.setText("Incorrect Username/Password");
         System.out.println("Incorrect Username/Password");
       } else {
-        lblError.setStyle("-fx-text-fill: green");
-        lblError.setText("Login Successful");
         System.out.println("Login Successful");
 
         // Get stage containing btnLogin and close it
