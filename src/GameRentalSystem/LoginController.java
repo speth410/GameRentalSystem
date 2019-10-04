@@ -1,30 +1,46 @@
 package GameRentalSystem;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 public class LoginController {
+  //--
   Connection connection = null;
   PreparedStatement preparedStatement = null;
   ResultSet resultSet = null;
-  @FXML private TextField txtUsername;
-  @FXML private TextField txtPassword;
-  @FXML private Button btnLogin;
-  @FXML private Button btnCreateAccount;
+
+  @FXML
+  private JFXTextField txtUserID;
+
+  @FXML
+  private JFXPasswordField txtUserPass;
+
+  @FXML
+  private JFXButton btnLogin;
+
+  @FXML
+  private Label lblError;
+
+  @FXML
+  private JFXButton SignUp;
+
 
   @FXML
   void handleLoginClicked(MouseEvent event) {
-    String username = txtUsername.getText();
-    String password = txtPassword.getText();
+    String username = txtUserID.getText();
+    String password = txtUserPass.getText();
 
     String sql = "SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
 
@@ -37,7 +53,9 @@ public class LoginController {
 
       // If the login failed
       if (!resultSet.next()) {
-        System.out.println("Login failed");
+        lblError.setStyle("-fx-text-fill: red");
+        lblError.setText("Incorrect Username/Password");
+        System.out.println("Incorrect Username/Password");
       } else {
         System.out.println("Login Successful");
 
@@ -58,8 +76,8 @@ public class LoginController {
 
   @FXML
   void handleCreateAccount(MouseEvent event) {
-    String username = txtUsername.getText();
-    String password = txtPassword.getText();
+    String username = txtUserID.getText();
+    String password = txtUserPass.getText();
     String sql = "INSERT INTO USERS(USERNAME, PASSWORD) VALUES (?, ?)";
 
     try {

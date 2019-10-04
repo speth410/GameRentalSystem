@@ -1,9 +1,11 @@
 package GameRentalSystem;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
-import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -19,6 +21,10 @@ public class DashboardController {
   @FXML private TilePane tpGames;
   @FXML private ScrollPane spGames;
   @FXML private HBox hBox;
+  @FXML private TableView<CartItem> tvCart;
+  @FXML private TableColumn<CartItem, String> colTitle;
+  @FXML private TableColumn<?, ?> colRemove;
+  @FXML private Button btnCheckout;
   private Connection connection = null;
 
   @FXML
@@ -86,6 +92,7 @@ public class DashboardController {
       ImageView images = imageList.get(i);
       images.setFitHeight(100);
       images.setFitWidth(60);
+
       imageList.set(i, images);
 
       // Create a VBox for each game to contain the ImageView and Label
@@ -94,6 +101,22 @@ public class DashboardController {
 
       // Add the ImageView and Label to the VBox
       vBox.getChildren().addAll(labelList.get(i), imageList.get(i));
+
+      // Add and OnMouseClicked Event on each game listing
+      vBox.setOnMouseClicked(
+          e -> {
+            tvCart.getColumns().clear();
+
+            // Create temporary copy of the label contained within the VBox
+            Label title = (Label) vBox.getChildren().get(0);
+
+            CartItem item = new CartItem(title.getText());
+
+            // Make the column and add it to the Table View
+            colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            tvCart.getColumns().add(colTitle);
+            tvCart.getItems().add(item);
+          });
 
       // Add the VBox containing the games image and title to the TilePane
       tpGames.getChildren().add(vBox);

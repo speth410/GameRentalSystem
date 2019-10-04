@@ -1,37 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="120.0"
-          prefWidth="360.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1"
-          fx:controller="GameRentalSystem.LoginController">
-    <columnConstraints>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="176.0" minWidth="10.0" prefWidth="104.0"/>
-        <ColumnConstraints hgrow="SOMETIMES" maxWidth="281.0" minWidth="10.0" prefWidth="256.0"/>
-    </columnConstraints>
-    <rowConstraints>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-    </rowConstraints>
-    <children>
-        <Label text="Username:"/>
-        <Label text="Password:" GridPane.rowIndex="1"/>
-        <TextField fx:id="txtUsername" GridPane.columnIndex="1"/>
-        <TextField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
-            <children>
-                <Button fx:id="btnCreateAccount" layoutX="14.0" layoutY="6.0" mnemonicParsing="false"
-                        onMouseClicked="#handleCreateAccount" text="Create Account"/>
-                <Button fx:id="btnLogin" layoutX="196.0" layoutY="8.0" mnemonicParsing="false"
-                        onMouseClicked="#handleLoginClicked" text="Login"/>
-            </children>
-        </AnchorPane>
-    </children>
-</GridPane>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameRentalSystem.LoginController">
+  <children>
+    <ImageView fitHeight="500.0" fitWidth="1000.0" layoutX="-4.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
+      <image>
+        <Image url="@img/maxresdefault.jpg" />
+      </image>
+    </ImageView>
+    <AnchorPane layoutX="563.0" layoutY="85.0" prefHeight="333.0" prefWidth="315.0">
+      <children>
+        <JFXTextField fx:id="txtUserID" focusColor="WHITE" layoutX="62.0" layoutY="151.0" prefHeight="31.0" prefWidth="228.0" promptText="username" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
+        <JFXPasswordField fx:id="txtUserPass" focusColor="WHITE" layoutX="62.0" layoutY="209.0" prefHeight="31.0" prefWidth="228.0" promptText="password" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
+        <JFXButton fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onMouseClicked="#handleLoginClicked" text="Login" textFill="WHITE">
+          <font>
+            <Font size="20.0" />
+          </font>
+        </JFXButton>
+        <Label layoutX="116.0" layoutY="76.0" text="Sign In" textFill="WHITE">
+          <font>
+            <Font size="27.0" />
+          </font>
+        </Label>
+        <Label fx:id="lblError" layoutX="73.0" layoutY="292.0" prefHeight="31.0" prefWidth="207.0" textFill="RED" />
+          <JFXButton fx:id="SignUp" layoutX="50.0" layoutY="248.0" onMouseClicked="#handleCreateAccount" text="Create Account" textFill="WHITE">
+            <font>
+              <Font size="20.0" />
+            </font>
+          </JFXButton>
+      </children>
+    </AnchorPane>
+    <Label layoutX="372.0" layoutY="57.0" text="Game Rental" textFill="WHITE">
+      <font>
+        <Font size="39.0" />
+      </font>
+    </Label>
+  </children>
+</AnchorPane>
