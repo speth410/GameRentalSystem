@@ -1,0 +1,8 @@
+.loginButton:hover {
+    -fx-background-color: green;
+}
+
+.createAccountButton:hover {
+    -fx-background-color: green;
+}
+

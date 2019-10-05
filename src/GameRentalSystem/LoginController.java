@@ -16,37 +16,19 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 public class LoginController {
-  //--
-  Connection connection = null;
-  PreparedStatement preparedStatement = null;
-  ResultSet resultSet = null;
+  private Connection connection = null;
+  private PreparedStatement preparedStatement = null;
+  private ResultSet resultSet = null;
 
-  @FXML
-  private JFXTextField txtUserID;
+  @FXML private JFXTextField txtUserID;
 
-  @FXML
-  private JFXPasswordField txtUserPass;
+  @FXML private JFXPasswordField txtUserPass;
 
-  @FXML
-  private JFXButton btnLogin;
+  @FXML private JFXButton btnLogin;
 
-  @FXML
-  private Label lblError;
+  @FXML private Label lblError;
 
-  @FXML
-  private JFXButton SignUp;
-
-    @FXML
-    void handleLoginMouseHover(MouseEvent event) {
-        btnLogin.setStyle("-fx-background-color: green");
-    }
-
-  @FXML
-  void handleLoginMouseExit(MouseEvent event) {
-      btnLogin.setStyle("-fx-background-color: transparent");
-
-  }
-
+  @FXML private JFXButton SignUp;
 
   @FXML
   void handleLoginClicked(MouseEvent event) {

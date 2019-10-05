@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -20,7 +21,7 @@
       <children>
         <JFXTextField fx:id="txtUserID" focusColor="WHITE" layoutX="62.0" layoutY="151.0" prefHeight="31.0" prefWidth="228.0" promptText="Username" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
         <JFXPasswordField fx:id="txtUserPass" focusColor="WHITE" layoutX="62.0" layoutY="209.0" prefHeight="31.0" prefWidth="228.0" promptText="Password" style="-fx-background-color: #FFFFFF;" unFocusColor="WHITE" />
-        <JFXButton fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onMouseClicked="#handleLoginClicked" onMouseEntered="#handleLoginMouseHover" onMouseExited="#handleLoginMouseExit" text="Login" textFill="WHITE">
+        <JFXButton id="loginButton" fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onMouseClicked="#handleLoginClicked" onMouseEntered="#handleLoginMouseHover" onMouseExited="#handleLoginMouseExit" styleClass="loginButton" stylesheets="@LoginStyleSheet.css" text="Login" textFill="WHITE">
           <font>
             <Font size="20.0" />
           </font>
@@ -31,7 +32,7 @@
           </font>
         </Label>
         <Label fx:id="lblError" layoutX="73.0" layoutY="292.0" prefHeight="31.0" prefWidth="207.0" textFill="RED" />
-          <JFXButton fx:id="SignUp" layoutX="50.0" layoutY="248.0" onMouseClicked="#handleCreateAccount" text="Create Account" textFill="WHITE">
+          <JFXButton id="createAccountButton" fx:id="btnCreateAccount" layoutX="50.0" layoutY="248.0" onMouseClicked="#handleCreateAccount" styleClass="createAccountButton" stylesheets="@LoginStyleSheet.css" text="Create Account" textFill="WHITE">
             <font>
               <Font size="20.0" />
             </font>
@@ -44,4 +45,7 @@
       </font>
     </Label>
   </children>
+    <stylesheets>
+        <URL value="@LoginStyleSheet.css" />
+    </stylesheets>
 </AnchorPane>
