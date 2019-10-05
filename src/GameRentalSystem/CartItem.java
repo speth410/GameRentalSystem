@@ -1,13 +1,13 @@
 package GameRentalSystem;
 
 public class CartItem {
-    private String title;
+  private String title;
 
-    public CartItem(String title) {
-        this.title = title;
-    }
+  public CartItem(String title) {
+    this.title = title;
+  }
 
-    public String getTitle() {
-        return title;
-    }
+  public String getTitle() {
+    return title;
+  }
 }

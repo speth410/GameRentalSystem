@@ -3,7 +3,9 @@ package GameRentalSystem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -92,12 +94,17 @@ public class DashboardController {
       ImageView images = imageList.get(i);
       images.setFitHeight(100);
       images.setFitWidth(60);
+      images.getStyleClass().add("gameImage");
 
       imageList.set(i, images);
 
+      Label gameTitle = labelList.get(i);
+      gameTitle.getStyleClass().add("gameTitle");
+
       // Create a VBox for each game to contain the ImageView and Label
       VBox vBox = new VBox();
-      vBox.setAlignment(Pos.CENTER);
+      vBox.setAlignment(Pos.TOP_CENTER);
+      vBox.getStyleClass().add("gameBox");
 
       // Add the ImageView and Label to the VBox
       vBox.getChildren().addAll(labelList.get(i), imageList.get(i));

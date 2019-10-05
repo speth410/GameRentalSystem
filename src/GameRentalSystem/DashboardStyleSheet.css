@@ -1,0 +1,22 @@
+.gameBox {
+    -fx-padding: 5px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 2px;
+    -fx-min-height: 135px;
+}
+
+.gameBox:hover {
+    -fx-border-color: white;
+}
+
+.gameImage {
+
+}
+
+.gameTitle {
+    -fx-text-fill: white;
+}
+
+.tpGames {
+    -fx-background-color: dimgrey;
+}
