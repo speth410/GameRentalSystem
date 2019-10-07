@@ -1,11 +1,9 @@
 package GameRentalSystem;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -13,6 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.sql.*;
@@ -28,6 +27,33 @@ public class DashboardController {
   @FXML private TableColumn<?, ?> colRemove;
   @FXML private Button btnCheckout;
   private Connection connection = null;
+  private String currentUser = null;
+
+  public DashboardController(String username) {
+    // Save the current users username
+    currentUser = username;
+
+    // Create new stage
+    Stage dashboardStage = new Stage();
+
+    // Load the FXML file
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+
+      // Set this class as the controller
+      loader.setController(this);
+
+      // Load the scene
+      dashboardStage.setScene(new Scene(loader.load()));
+
+      // Setup the window/stage
+      dashboardStage.setTitle("Dashboard");
+      dashboardStage.show();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+  }
 
   @FXML
   public void initialize() {
@@ -41,6 +67,9 @@ public class DashboardController {
 
     // Retrieve and show games stored in the database
     getGames();
+
+    // Test to show that the dashboard knows who is logged in.
+    System.out.println("Logged in as: " + currentUser);
   }
 
   @FXML

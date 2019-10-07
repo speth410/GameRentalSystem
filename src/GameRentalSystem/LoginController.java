@@ -54,11 +54,8 @@ public class LoginController {
         Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.close();
 
-        // Create new Stage and scene for the main program.
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("Dashboard.fxml")));
-        Stage dialogStage = new Stage();
-        dialogStage.setScene(scene);
-        dialogStage.show();
+        // Create dashboard controller
+        DashboardController dashboard = new DashboardController(username);
       }
     } catch (Exception e) {
       e.printStackTrace();
