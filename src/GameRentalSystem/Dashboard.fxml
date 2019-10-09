@@ -65,7 +65,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnRemoveAll" ripplerFill="#ce0f0f" style="-fx-background-color: salmon;" text="Remove All" textFill="#140000" GridPane.halignment="LEFT" />
+                  <JFXButton fx:id="btnRemove" onMouseClicked="#handleRemoveClicked" ripplerFill="#ce0f0f" style="-fx-background-color: salmon;" text="Remove" textFill="#140000" GridPane.halignment="LEFT" />
                   <JFXButton fx:id="btnCheckout" ripplerFill="#18ac18" style="-fx-background-color: lightgreen;" text="Checkout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
                </children>
             </GridPane>

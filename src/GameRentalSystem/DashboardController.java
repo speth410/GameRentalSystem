@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
@@ -70,6 +71,12 @@ public class DashboardController {
 
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Logged in as: " + currentUser);
+  }
+
+  @FXML
+  void handleRemoveClicked(MouseEvent event) {
+    CartItem item = tvCart.getSelectionModel().getSelectedItem();
+    tvCart.getItems().remove(item);
   }
 
   @FXML
@@ -151,7 +158,11 @@ public class DashboardController {
             // Make the column and add it to the Table View
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
             tvCart.getColumns().add(colTitle);
-            tvCart.getItems().add(item);
+
+            // Check to make sure the game doesn't already exist in the cart
+            if (!tvCart.getItems().contains(item)) {
+              tvCart.getItems().add(item);
+            }
           });
 
       // Add the VBox containing the games image and title to the TilePane

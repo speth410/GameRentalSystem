@@ -10,4 +10,10 @@ public class CartItem {
   public String getTitle() {
     return title;
   }
+
+  @Override
+  public boolean equals(Object item) {
+    return item instanceof CartItem && ((CartItem) item).title.equals(title);
+  }
+
 }
