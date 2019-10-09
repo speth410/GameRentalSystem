@@ -15,5 +15,4 @@ public class CartItem {
   public boolean equals(Object item) {
     return item instanceof CartItem && ((CartItem) item).title.equals(title);
   }
-
 }

@@ -162,6 +162,13 @@ public class DashboardController {
             // Check to make sure the game doesn't already exist in the cart
             if (!tvCart.getItems().contains(item)) {
               tvCart.getItems().add(item);
+            } else {
+
+              // Show a dialog informing the user that the item is already in their cart.
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Duplicate item");
+              alert.setHeaderText("That item is already in your cart!");
+              alert.showAndWait();
             }
           });
 
