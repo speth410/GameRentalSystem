@@ -57,12 +57,12 @@
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: dimgrey;" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: dimgrey; -fx-border-color: grey;" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colTitle" prefWidth="119.0" style="-fx-background-color: lightgrey;" text="Game Title" />
                     </columns>
                <VBox.margin>
-                  <Insets top="3.0" />
+                  <Insets top="5.0" />
                </VBox.margin>
                 </TableView>
             <GridPane>

@@ -50,3 +50,7 @@
     -fx-background-color: dimgrey;
     -fx-background-radius: 5em;
 }
+
+.scroll-pane > .corner {
+    -fx-background-color: grey;
+}
