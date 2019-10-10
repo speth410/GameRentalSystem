@@ -15,11 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.26588628762541805, 0.717391304347826" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.26588628762541805, 0.717391304347826" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: dimgrey;" styleClass=".spGames" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <items>
         <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
-                <Label alignment="CENTER" prefHeight="45.0" prefWidth="157.0" text="Account">
+                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="157.0" style="-fx-background-color: grey; -fx-border-color: dimgrey;" text="Account" textFill="LIGHTGRAY">
                     <font>
                         <Font size="30.0" />
                     </font>
@@ -28,33 +28,42 @@
         </VBox>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
-                <Label alignment="CENTER" prefHeight="45.0" prefWidth="266.0" text="Games" textAlignment="CENTER">
+                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="266.0" style="-fx-background-color: grey; -fx-border-color: dimgrey;" text="Games" textAlignment="CENTER" textFill="LIGHTGRAY">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <ScrollPane fx:id="spGames" prefHeight="386.0" prefWidth="264.0" VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="386.0" prefWidth="264.0" VBox.vgrow="ALWAYS">
                     <content>
-                        <TilePane fx:id="tpGames" prefHeight="392.0" prefWidth="261.0" styleClass="tpGames" stylesheets="@DashboardStyleSheet.css">
+                        <TilePane fx:id="tpGames" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="273.0" styleClass="tpGames" stylesheets="@DashboardStyleSheet.css" vgap="5.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
+                     <padding>
+                        <Insets bottom="1.0" left="1.0" right="1.0" top="1.0" />
+                     </padding>
                         </TilePane>
                     </content>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
                 </ScrollPane>
             </children>
         </VBox>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="169.0" text="Cart">
+                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="169.0" style="-fx-background-color: grey; -fx-border-color: dimgrey;" text="Cart" textFill="LIGHTGRAY">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: dimgrey;" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colTitle" prefWidth="75.0" text="Game Title" />
+                        <TableColumn fx:id="colTitle" prefWidth="119.0" style="-fx-background-color: lightgrey;" text="Game Title" />
                     </columns>
+               <VBox.margin>
+                  <Insets top="3.0" />
+               </VBox.margin>
                 </TableView>
             <GridPane>
               <columnConstraints>

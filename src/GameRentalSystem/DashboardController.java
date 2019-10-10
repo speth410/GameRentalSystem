@@ -70,7 +70,7 @@ public class DashboardController {
     getGames();
 
     // Test to show that the dashboard knows who is logged in.
-    System.out.println("Logged in as: " + currentUser);
+    System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
   }
 
   @FXML

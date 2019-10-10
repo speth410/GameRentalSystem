@@ -1,16 +1,15 @@
 .gameBox {
     -fx-padding: 5px;
-    -fx-border-insets: 5px;
-    -fx-background-insets: 2px;
+    -fx-border-insets: -.75px;
+    -fx-border-width: 1px;
+    -fx-background-insets: -1px;
     -fx-min-height: 135px;
 }
 
 .gameBox:hover {
     -fx-border-color: white;
-}
-
-.gameImage {
-
+    -fx-background-color: grey;
+    -fx-opacity: 50;
 }
 
 .gameTitle {
@@ -19,4 +18,35 @@
 
 .tpGames {
     -fx-background-color: dimgrey;
+}
+
+.split-pane-divider {
+    -fx-background-color: transparent;
+    -fx-padding: -10px;
+}
+
+.scroll-pane {
+    -fx-background-color: grey;
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: dimgrey;
+    -fx-background-radius: 5em;
 }
