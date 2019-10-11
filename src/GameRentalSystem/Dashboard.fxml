@@ -15,27 +15,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<SplitPane dividerPositions="0.26588628762541805, 0.717391304347826" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: dimgrey;" styleClass=".spGames" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.26588628762541805, 0.717391304347826" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: #121212;" styleClass=".spGames" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <items>
-        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+        <VBox alignment="TOP_CENTER" prefHeight="458.0" prefWidth="152.0">
             <children>
-                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="157.0" style="-fx-background-color: grey; -fx-border-color: dimgrey;" text="Account" textFill="LIGHTGRAY">
+                <Label id="accountHeader" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="157.0" styleClass="accountHeader" stylesheets="@DashboardStyleSheet.css" text="Account" textFill="LIGHTGRAY">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
             </children>
         </VBox>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #121212;">
             <children>
-                <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="266.0" style="-fx-background-color: grey; -fx-border-color: dimgrey;" text="Games" textAlignment="CENTER" textFill="LIGHTGRAY">
+                <Label id="gamesHeader" alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="266.0" styleClass="gamesHeader" stylesheets="@DashboardStyleSheet.css" text="Games" textAlignment="CENTER" textFill="LIGHTGRAY">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="386.0" prefWidth="264.0" VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="421.0" prefWidth="270.0" styleClass="S" stylesheets="@DashboardStyleSheet.css" VBox.vgrow="ALWAYS">
                     <content>
-                        <TilePane fx:id="tpGames" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="350.0" prefWidth="273.0" styleClass="tpGames" stylesheets="@DashboardStyleSheet.css" vgap="5.0">
+                        <TilePane id="tpGames" fx:id="tpGames" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="273.0" style="-fx-background-color: transparent;" styleClass="tpGames" stylesheets="@DashboardStyleSheet.css" vgap="5.0">
                      <opaqueInsets>
                         <Insets />
                      </opaqueInsets>
@@ -50,16 +50,16 @@
                 </ScrollPane>
             </children>
         </VBox>
-        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #121212;">
             <children>
-                <Label alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="169.0" style="-fx-background-color: grey; -fx-border-color: dimgrey;" text="Cart" textFill="LIGHTGRAY">
+                <Label id="cartHeader" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" prefHeight="45.0" prefWidth="169.0" styleClass="cartHeader" stylesheets="@DashboardStyleSheet.css" text="Cart" textFill="LIGHTGRAY">
                     <font>
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: dimgrey; -fx-border-color: grey;" VBox.vgrow="ALWAYS">
+                <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" styleClass="tvCart" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn fx:id="colTitle" prefWidth="119.0" style="-fx-background-color: lightgrey;" text="Game Title" />
+                        <TableColumn id=".gameTitleColumn" fx:id="colTitle" prefWidth="119.0" styleClass=".gameTitleColumn" text="Game Title" />
                     </columns>
                <VBox.margin>
                   <Insets top="5.0" />
@@ -74,8 +74,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnRemove" onMouseClicked="#handleRemoveClicked" ripplerFill="#ce0f0f" style="-fx-background-color: salmon;" text="Remove" textFill="#140000" GridPane.halignment="LEFT" />
-                  <JFXButton fx:id="btnCheckout" ripplerFill="#18ac18" style="-fx-background-color: lightgreen;" text="Checkout" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                  <JFXButton fx:id="btnRemove" maxWidth="1.7976931348623157E308" onMouseClicked="#handleRemoveClicked" prefHeight="25.0" prefWidth="84.0" ripplerFill="#ce0f0f" style="-fx-background-color: salmon;" text="Remove" textFill="#140000" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin></JFXButton>
+                  <JFXButton fx:id="btnCheckout" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="78.0" ripplerFill="#18ac18" style="-fx-background-color: lightgreen;" text="Checkout" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                     <GridPane.margin>
+                        <Insets left="5.0" right="5.0" />
+                     </GridPane.margin></JFXButton>
                </children>
             </GridPane>
             </children>

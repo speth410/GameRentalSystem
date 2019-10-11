@@ -157,6 +157,7 @@ public class DashboardController {
 
             // Make the column and add it to the Table View
             colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            colTitle.getStyleClass().add("gameTitleColumn");
             tvCart.getColumns().add(colTitle);
 
             // Check to make sure the game doesn't already exist in the cart

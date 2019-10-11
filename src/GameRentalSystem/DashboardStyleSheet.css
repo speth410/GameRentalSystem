@@ -1,3 +1,4 @@
+/* Game Box */
 .gameBox {
     -fx-padding: 5px;
     -fx-border-insets: -.75px;
@@ -5,19 +6,45 @@
     -fx-background-insets: -1px;
     -fx-min-height: 135px;
 }
-
 .gameBox:hover {
-    -fx-border-color: white;
-    -fx-background-color: grey;
-    -fx-opacity: 50;
+    -fx-border-color: rgba(255, 255, 255, .15);
+    -fx-background-color: rgba(255,255,255,.1);
 }
-
 .gameTitle {
     -fx-text-fill: white;
 }
 
-.tpGames {
+/* Scroll Pane */
+.scroll-pane {-fx-background-color: rgba(255, 255, 255, 0.05);}
+.scroll-pane > .viewport {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:transparent;
+}
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
     -fx-background-color: dimgrey;
+    -fx-background-radius: 5em;
+}
+.scroll-pane > .corner {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+/* End ScrollPane */
+
+
+.tpGames {
+    -fx-background-color: transparent;
 }
 
 .split-pane-divider {
@@ -25,32 +52,26 @@
     -fx-padding: -10px;
 }
 
-.scroll-pane {
-    -fx-background-color: grey;
+.accountHeader {-fx-background-color: rgba(255, 255, 255, 0.07);}
+.gamesHeader {-fx-background-color: rgba(255, 255, 255, 0.07);}
+.cartHeader {-fx-background-color: rgba(255, 255, 255, 0.07);}
+
+.tvCart {
+    -fx-text-fill: lightgrey;
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+}
+.gameTitleColumn {
+    -fx-text-fill: white;
+}
+.table-row-cell {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+    -fx-text-fill: white;
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical{
-    -fx-background-color:transparent;
+.table-view .column-header .label {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-text-fill: rgba(255, 255, 255, 0.25);
 }
-
-.increment-button, .decrement-button {
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-}
-
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
-    -fx-background-color: transparent;
-    -fx-border-color: transparent;
-    -fx-background-radius: 0em;
-}
-
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
-    -fx-background-color: dimgrey;
-    -fx-background-radius: 5em;
-}
-
-.scroll-pane > .corner {
-    -fx-background-color: grey;
+.column-header {
+    -fx-background-color: #121212;
 }
