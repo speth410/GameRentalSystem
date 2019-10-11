@@ -52,9 +52,20 @@
     -fx-padding: -10px;
 }
 
-.accountHeader {-fx-background-color: rgba(255, 255, 255, 0.07);}
-.gamesHeader {-fx-background-color: rgba(255, 255, 255, 0.07);}
-.cartHeader {-fx-background-color: rgba(255, 255, 255, 0.07);}
+/* Headings */
+.accountHeader {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+.gamesHeader {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+.cartHeader {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
+}
+/* End Headings */
 
 .tvCart {
     -fx-text-fill: lightgrey;
@@ -66,6 +77,9 @@
 .table-row-cell {
     -fx-background-color: rgba(255, 255, 255, 0.05);
     -fx-text-fill: white;
+}
+.table-row-cell:selected {
+    -fx-background-color: rgba(255, 255, 255, .1);
 }
 
 .table-view .column-header .label {
