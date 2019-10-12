@@ -1,45 +1,38 @@
-/* Game Box */
-.gameBox {
-    -fx-padding: 5px;
-    -fx-border-insets: -.75px;
-    -fx-border-width: 1px;
-    -fx-background-insets: -1px;
-    -fx-min-height: 135px;
-}
-.gameBox:hover {
-    -fx-border-color: rgba(255, 255, 255, .15);
-    -fx-background-color: rgba(255,255,255,.1);
-}
-.gameTitle {
-    -fx-text-fill: white;
+/* Scroll Pane */
+.scroll-pane {
+    -fx-background-color: rgba(255, 255, 255, 0.05);
 }
 
-/* Scroll Pane */
-.scroll-pane {-fx-background-color: rgba(255, 255, 255, 0.05);}
 .scroll-pane > .viewport {
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
-.scroll-bar:horizontal, .scroll-bar:vertical{
-    -fx-background-color:transparent;
+
+.scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
 }
+
 .increment-button, .decrement-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
+
 .scroll-bar:horizontal .track,
-.scroll-bar:vertical .track{
+.scroll-bar:vertical .track {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
+
 .scroll-bar:horizontal .thumb,
 .scroll-bar:vertical .thumb {
     -fx-background-color: dimgrey;
     -fx-background-radius: 5em;
 }
+
 .scroll-pane > .corner {
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
+
 /* End ScrollPane */
 
 
@@ -55,37 +48,79 @@
 /* Headings */
 .accountHeader {
     -fx-background-color: rgba(255, 255, 255, 0.07);
-    -fx-text-fill: rgba(255, 255, 255, 0.5);
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
 }
+
 .gamesHeader {
     -fx-background-color: rgba(255, 255, 255, 0.07);
-    -fx-text-fill: rgba(255, 255, 255, 0.5);
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
 }
+
 .cartHeader {
     -fx-background-color: rgba(255, 255, 255, 0.07);
-    -fx-text-fill: rgba(255, 255, 255, 0.5);
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
 }
+
 /* End Headings */
 
+
+/* Game Box */
+.gameBox {
+    -fx-padding: 5px;
+    -fx-border-insets: -.75px;
+    -fx-border-width: 1px;
+    -fx-background-insets: -1px;
+    -fx-min-height: 135px;
+}
+
+.gameBox:hover {
+    -fx-border-color: rgba(255, 255, 255, .15);
+    -fx-background-color: rgba(255, 255, 255, .1);
+}
+
+.gameTitle {
+    -fx-text-fill: white;
+}
+
+/* End Game Box */
+
+
+/* Cart TableView */
 .tvCart {
     -fx-text-fill: lightgrey;
     -fx-background-color: rgba(255, 255, 255, 0.07);
 }
+
 .gameTitleColumn {
-    -fx-text-fill: white;
+    -fx-text-fill: rgba(255, 255, 255, 0.5);
 }
+
 .table-row-cell {
     -fx-background-color: rgba(255, 255, 255, 0.05);
     -fx-text-fill: white;
 }
+
 .table-row-cell:selected {
     -fx-background-color: rgba(255, 255, 255, .1);
 }
 
 .table-view .column-header .label {
     -fx-background-color: rgba(255, 255, 255, 0.07);
-    -fx-text-fill: rgba(255, 255, 255, 0.25);
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
 }
+
 .column-header {
     -fx-background-color: #121212;
+}
+
+/* End Cart TableView */
+
+.btnRemove {
+    -fx-text-fill: #121212;
+    -fx-background-color: #CF6679;
+}
+
+.btnCheckout {
+    -fx-text-fill: #121212;
+    -fx-background-color: #4caf50;
 }

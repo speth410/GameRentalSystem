@@ -74,11 +74,11 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <JFXButton fx:id="btnRemove" maxWidth="1.7976931348623157E308" onMouseClicked="#handleRemoveClicked" prefHeight="25.0" prefWidth="84.0" ripplerFill="#ce0f0f" style="-fx-background-color: salmon;" text="Remove" textFill="#140000" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                  <JFXButton fx:id="btnRemove" maxWidth="1.7976931348623157E308" onMouseClicked="#handleRemoveClicked" prefHeight="25.0" prefWidth="84.0" ripplerFill="#efaaaa" styleClass="btnRemove" text="Remove" textFill="WHITE" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></JFXButton>
-                  <JFXButton fx:id="btnCheckout" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="78.0" ripplerFill="#18ac18" style="-fx-background-color: lightgreen;" text="Checkout" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
+                  <JFXButton fx:id="btnCheckout" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="78.0" ripplerFill="#a8e2a8" styleClass="btnCheckout" text="Checkout" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS">
                      <GridPane.margin>
                         <Insets left="5.0" right="5.0" />
                      </GridPane.margin></JFXButton>
