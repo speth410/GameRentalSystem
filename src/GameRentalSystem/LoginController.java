@@ -7,6 +7,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import javafx.fxml.FXML;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -17,14 +19,10 @@ public class LoginController {
   private ResultSet resultSet = null;
 
   @FXML private JFXTextField txtUserID;
-
   @FXML private JFXPasswordField txtUserPass;
-
   @FXML private JFXButton btnLogin;
-
   @FXML private Label lblError;
-
-  @FXML private JFXButton SignUp;
+  @FXML private JFXButton btnCreateAccount;
 
   @FXML
   void handleLoginClicked(MouseEvent event) {
@@ -62,7 +60,12 @@ public class LoginController {
 
   @FXML
   void handleCreateAccount(MouseEvent event) {
-    String username = txtUserID.getText();
+    Dialog<ButtonType> createAccount = new Dialog<>();
+    createAccount.setTitle("Create New Account");
+    createAccount.setHeaderText("Enter your personal information for this account.");
+    
+
+    /*String username = txtUserID.getText();
     String password = txtUserPass.getText();
     String sql = "INSERT INTO USERS(USERNAME, PASSWORD) VALUES (?, ?)";
 
@@ -76,7 +79,7 @@ public class LoginController {
 
     } catch (Exception e) {
       e.printStackTrace();
-    }
+    }*/
   }
 
   @FXML

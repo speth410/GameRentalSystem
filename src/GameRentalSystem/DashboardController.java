@@ -1,5 +1,6 @@
 package GameRentalSystem;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -27,6 +28,8 @@ public class DashboardController {
   @FXML private TableColumn<CartItem, String> colTitle;
   @FXML private TableColumn<?, ?> colRemove;
   @FXML private Button btnCheckout;
+  @FXML private JFXButton btnSave;
+  @FXML private JFXButton btnEditAccount;
   private Connection connection = null;
   private String currentUser = null;
 
@@ -176,5 +179,10 @@ public class DashboardController {
       // Add the VBox containing the games image and title to the TilePane
       tpGames.getChildren().add(vBox);
     }
+  }
+
+  @FXML
+  void handleEditInfoClicked(MouseEvent event) {
+
   }
 }

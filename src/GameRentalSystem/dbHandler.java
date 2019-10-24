@@ -11,7 +11,6 @@ public class dbHandler {
 
     final String JDBC_DRIVER = "org.h2.Driver";
     final String DB_URL = "jdbc:h2:./res/GameRentalSystem";
-
     final String USER = "";
     final String PASS = "";
 
