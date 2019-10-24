@@ -13,11 +13,12 @@ public class Game {
   private String price;
 
   public Game(String gameTitle, Image gameImage) {
-      this.gameTitle = gameTitle;
-      this.gameImage = gameImage;
+    this.gameTitle = gameTitle;
+    this.gameImage = gameImage;
   }
 
-  public Game(String gameTitle, GameGenre genre, GameRating rating, String price, FileInputStream fileIn) {
+  public Game(
+      String gameTitle, GameGenre genre, GameRating rating, String price, FileInputStream fileIn) {
     this.gameTitle = gameTitle;
     this.genre = genre;
     this.fileIn = fileIn;
@@ -66,6 +67,7 @@ public class Game {
   }
 
   public void print() {
-    System.out.println("Title: " + gameTitle + " Genre: " + genre + " Rating: " + rating + " Price: " + price);
+    System.out.println(
+        "Title: " + gameTitle + " Genre: " + genre + " Rating: " + rating + " Price: " + price);
   }
 }

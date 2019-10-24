@@ -70,6 +70,18 @@
 .lblUsername {
     -fx-text-fill: rgba(255, 255, 255, 0.75);
 }
+.gpAccount{
+    -fx-background-color: rgba(255, 255, 255, 0.05);
+}
+.btnEditAccount {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: #121212;
+}
+.btnSave {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-text-fill: #121212;
+}
+
 /* End Account Column
 
 

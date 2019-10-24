@@ -1,5 +1,9 @@
 package GameRentalSystem;
 
 public enum GameGenre {
-    FPS, RPG, Action, Adventure, Strategy
+  FPS,
+  RPG,
+  Action,
+  Adventure,
+  Strategy
 }

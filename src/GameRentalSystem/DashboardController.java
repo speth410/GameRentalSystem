@@ -40,7 +40,6 @@ public class DashboardController {
   private FileChooser fileChooser = new FileChooser();
   private Game game;
 
-  // ******TEST*****
   private ArrayList<Game> games = new ArrayList<>();
 
   public DashboardController(String username) {
@@ -84,7 +83,7 @@ public class DashboardController {
 
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
-   // lblUsername.setText("Username: " + currentUser);
+    // lblUsername.setText("Username: " + currentUser);
   }
 
   @FXML
@@ -95,6 +94,11 @@ public class DashboardController {
 
   @FXML
   private void getGames() {
+
+    // Remove all Game objects from the games ArrayList
+    // Prevents duplicate entries
+    games.clear();
+
     String sql = "SELECT * FROM GAMES";
     List<ImageView> imageList = new ArrayList<>();
     List<Label> labelList = new ArrayList<>();
@@ -129,7 +133,12 @@ public class DashboardController {
         labelList.add(new Label(gameTitle));
 
         // Create a Game object for each game entry obtained from the database.
-        games.add(new Game(gameTitle, image));
+        if (!games.contains(new Game(gameTitle, image))) {
+          games.add(new Game(gameTitle, image));
+          System.out.println("Added: " + gameTitle);
+        } else {
+          System.out.println("Duplicate found");
+        }
       }
       // Pass Labels and ImageViews to method to be drawn to the scene
       showGames(imageList, labelList);
@@ -200,7 +209,8 @@ public class DashboardController {
     if (result.isPresent() && result.get() == btnSubmit) {
       try {
 
-        // Initialize fileIn as null to avoid a NullPointerException if the user doesn't add an image.
+        // Initialize fileIn as null to avoid a NullPointerException if the user doesn't add an
+        // image.
         FileInputStream fileIn = null;
         if (selectedFile != null) {
           fileIn = new FileInputStream(selectedFile);
@@ -215,6 +225,16 @@ public class DashboardController {
                 txtPrice.getText(),
                 fileIn));
 
+        // Insert new game into the database
+        String sql = "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE) VALUES (?, ?)";
+        PreparedStatement stmt = connection.prepareStatement(sql);
+        stmt.setString(1, txtTitle.getText());
+        stmt.setBinaryStream(2, fileIn);
+        stmt.executeUpdate();
+        getGames();
+
+        System.out.println("Size of games ArrayList: " + games.size());
+
         // Test to show all of the Game objects stored within the games ArrayList.
         for (Game game : games) {
           game.print();
@@ -226,6 +246,8 @@ public class DashboardController {
   }
 
   private void showGames(List<ImageView> imageList, List<Label> labelList) {
+
+    tpGames.getChildren().clear();
 
     // For each element in the array (Both arrays should be the same size)
     for (int i = 0; i < imageList.size(); i++) {
