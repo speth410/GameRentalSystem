@@ -84,7 +84,7 @@ public class DashboardController {
 
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
-    lblUsername.setText("Username: " + currentUser);
+   // lblUsername.setText("Username: " + currentUser);
   }
 
   @FXML
@@ -172,8 +172,8 @@ public class DashboardController {
     grid.add(cbRating, 2, 3);
     grid.add(lblPrice, 1, 4);
     grid.add(txtPrice, 2, 4);
-    grid.add(lblGameImage, 1, 6);
-    grid.add(txtGameImage, 2, 6);
+    grid.add(lblGameImage, 1, 5);
+    grid.add(txtGameImage, 2, 5);
 
     addGame.getDialogPane().setContent(grid);
 
