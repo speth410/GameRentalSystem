@@ -1,35 +1,35 @@
 /* Scroll Pane */
-.scroll-pane {
+.spGames {
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
 
-.scroll-pane > .viewport {
+.spGames > .viewport {
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
 
-.scroll-bar:horizontal, .scroll-bar:vertical {
+.spGames .scroll-bar:horizontal, .scroll-bar:vertical {
     -fx-background-color: transparent;
 }
 
-.increment-button, .decrement-button {
+.spGames .increment-button, .decrement-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
 }
 
-.scroll-bar:horizontal .track,
-.scroll-bar:vertical .track {
+.spGames .scroll-bar:horizontal .track,
+.spGames .scroll-bar:vertical .track {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
     -fx-background-radius: 0em;
 }
 
-.scroll-bar:horizontal .thumb,
-.scroll-bar:vertical .thumb {
+.spGames .scroll-bar:horizontal .thumb,
+.spGames .scroll-bar:vertical .thumb {
     -fx-background-color: dimgrey;
     -fx-background-radius: 5em;
 }
 
-.scroll-pane > .corner {
+.spGames > .corner {
     -fx-background-color: rgba(255, 255, 255, 0.05);
 }
 
@@ -62,6 +62,15 @@
 }
 
 /* End Headings */
+
+/* Account Column */
+.vboxAccount {
+    -fx-background-color: rgba(255, 255, 255, 0.07);
+}
+.lblUsername {
+    -fx-text-fill: rgba(255, 255, 255, 0.75);
+}
+/* End Account Column
 
 
 /* Game Box */
@@ -104,7 +113,7 @@
     -fx-background-color: rgba(255, 255, 255, .1);
 }
 
-.table-view .column-header .label {
+.tvCart .column-header .label {
     -fx-background-color: rgba(255, 255, 255, 0.07);
     -fx-text-fill: rgba(255, 255, 255, 0.75);
 }

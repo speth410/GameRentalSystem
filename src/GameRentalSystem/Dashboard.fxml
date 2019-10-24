@@ -3,7 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -24,6 +26,18 @@
                         <Font size="30.0" />
                     </font>
                 </Label>
+            <VBox prefHeight="200.0" prefWidth="100.0" styleClass="vboxAccount" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+               <children>
+                  <Label fx:id="lblUsername" styleClass="lblUsername">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+               </children>
+            </VBox>
             </children>
         </VBox>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #121212;">
@@ -33,7 +47,7 @@
                         <Font size="30.0" />
                     </font>
                 </Label>
-                <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="421.0" prefWidth="270.0" styleClass="S" stylesheets="@DashboardStyleSheet.css" VBox.vgrow="ALWAYS">
+                <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="421.0" prefWidth="270.0" styleClass="spGames" stylesheets="@DashboardStyleSheet.css" VBox.vgrow="ALWAYS">
                     <content>
                         <TilePane id="tpGames" fx:id="tpGames" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="325.0" prefWidth="273.0" style="-fx-background-color: transparent;" styleClass="tpGames" stylesheets="@DashboardStyleSheet.css" vgap="5.0">
                      <opaqueInsets>
@@ -47,6 +61,13 @@
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#handleAddGame" text="Add Game" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
                 </ScrollPane>
             </children>
         </VBox>
@@ -59,7 +80,7 @@
                 </Label>
                 <TableView fx:id="tvCart" prefHeight="200.0" prefWidth="200.0" styleClass="tvCart" VBox.vgrow="ALWAYS">
                     <columns>
-                        <TableColumn id=".gameTitleColumn" fx:id="colTitle" prefWidth="119.0" styleClass=".gameTitleColumn" text="Game Title" />
+                        <TableColumn id="gameTitleColumn" fx:id="colTitle" prefWidth="119.0" styleClass="gameTitleColumn" text="Game Title" />
                     </columns>
                <VBox.margin>
                   <Insets top="5.0" />
