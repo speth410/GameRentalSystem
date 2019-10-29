@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameRentalSystem.LoginController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="495.0" prefWidth="885.0" xmlns="http://javafx.com/javafx/8.0.221" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameRentalSystem.LoginController">
     <children>
         <ImageView fitHeight="500.0" fitWidth="1000.0" layoutX="-4.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
             <image>
@@ -25,7 +25,7 @@
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></JFXPasswordField>
-                <JFXButton id="loginButton" fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onMouseClicked="#handleLoginClicked" styleClass="loginButton" stylesheets="@LoginStyleSheet.css" text="Login" textFill="WHITE">
+                <JFXButton id="loginButton" fx:id="btnLogin" layoutX="226.0" layoutY="248.0" onKeyPressed="#handleLoginEnter" onMouseClicked="#handleLoginClicked" styleClass="loginButton" stylesheets="@LoginStyleSheet.css" text="Login" textFill="WHITE">
                     <font>
                         <Font size="20.0" />
                     </font>

@@ -1,5 +1,6 @@
 package GameRentalSystem;
 
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,19 +15,16 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import javax.swing.text.LabelView;
 import java.io.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-public class DashboardController extends LoginController {
+public class DashboardController {
   @FXML private TilePane tpGames;
   @FXML private ScrollPane spGames;
   @FXML private HBox hBox;
@@ -41,19 +39,12 @@ public class DashboardController extends LoginController {
   private Stage dashboardStage = new Stage();
   private FileChooser fileChooser = new FileChooser();
   private Game game;
-  public Text txtDisplayUserName;
-  @FXML public Text txtDisplayFirstName;
-  @FXML public Text txtDisplayLastName;
-  @FXML public Text txtDisplayAge;
-  @FXML public Text txtDisplayGender;
-  @FXML public Text txtDisplayEmail;
 
   private ArrayList<Game> games = new ArrayList<>();
 
   public DashboardController(String username) {
     // Save the current users username
     currentUser = username;
-
 
     // Create new stage
     // Stage dashboardStage = new Stage();
@@ -78,7 +69,7 @@ public class DashboardController extends LoginController {
   }
 
   @FXML
-  public void initialize() throws SQLException {
+  public void initialize() {
 
     // Get Connection from dbHandler
     connection = dbHandler.initializeDB();
@@ -92,10 +83,7 @@ public class DashboardController extends LoginController {
 
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
-
-    getAccountInfo();
-
-
+    // lblUsername.setText("Username: " + currentUser);
   }
 
   @FXML
@@ -164,7 +152,7 @@ public class DashboardController extends LoginController {
 
     Dialog<ButtonType> addGame = new Dialog<>();
     addGame.setTitle("Add a New Game");
-    addGame.setHeaderText("Enter the necessary information to \nadd a new game to the system.");
+    addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
 
     Label lblTitle = new Label("Game Title: ");
     Label lblGenre = new Label("Genre: ");
@@ -313,18 +301,6 @@ public class DashboardController extends LoginController {
 
       // Add the VBox containing the games image and title to the TilePane
       tpGames.getChildren().add(vBox);
-    }
-  }
-
-  public void getAccountInfo() throws SQLException {
-    String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
-    PreparedStatement stmt = connection.prepareStatement(sql);
-    stmt.setString(1,currentUser);
-    ResultSet resultSetGetAccountInfo = stmt.executeQuery();
-
-    while (resultSetGetAccountInfo.next()){
-      txtDisplayUserName.setText(currentUser);
-      txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
     }
   }
 }
