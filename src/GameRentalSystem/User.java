@@ -6,7 +6,8 @@ public class User {
   private String firstName;
   private String lastName;
   private int age;
-  private String cardNumber;
+  private String gender;
+  private String email;
 
   public User(
       String username,
@@ -14,13 +15,15 @@ public class User {
       String firstName,
       String lastName,
       int age,
-      String cardNumber) {
+      String gender,
+      String email) {
     this.username = username;
     this.password = password;
     this.firstName = firstName;
     this.lastName = lastName;
     this.age = age;
-    this.cardNumber = cardNumber;
+    this.gender = gender;
+    this.email = email;
   }
 
   public String getUsername() {
@@ -63,11 +66,19 @@ public class User {
     this.age = age;
   }
 
-  public String getCardNumber() {
-    return cardNumber;
+  public String getGender() {
+    return gender;
   }
 
-  public void setCardNumber(String cardNumber) {
-    this.cardNumber = cardNumber;
+  public void setGender(String gender) {
+    this.gender = gender;
+  }
+
+  public String getEmail() {
+    return email;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 }

@@ -67,13 +67,13 @@ public class LoginController {
     createAccount.setHeaderText("Enter your personal information for this account.");
 
     // labels to instruct the user to enter information
-    Label lblUserName = new Label("Enter your user name here: ");
-    Label lblPassWord = new Label("Enter your password here: ");
-    Label lblFirstName = new Label("Enter your first name here: ");
-    Label lblLastName = new Label("Enter your last name here: ");
-    Label lblAge = new Label("Enter your age here: ");
-    Label lblGender = new Label("Enter your gender here: ");
-    Label lblEmail = new Label("Enter your email here: ");
+    Label lblUserName = new Label("Username: ");
+    Label lblPassWord = new Label("Password: ");
+    Label lblFirstName = new Label("First Name: ");
+    Label lblLastName = new Label("Last Name: ");
+    Label lblAge = new Label("Age: ");
+    Label lblGender = new Label("Gender: ");
+    Label lblEmail = new Label("Email: ");
 
     // text fields to obtain the user input for each
     TextField txtUserName = new TextField();
@@ -117,17 +117,22 @@ public class LoginController {
       try {
         String username = txtUserName.getText();
         String password = txtPassword.getText();
-        String FirstName = txtFirstName.getText();
+        String firstName = txtFirstName.getText();
         String lastName = txtLastName.getText();
         String age = txtAge.getText();
-        String Gender = txtAge.getText();
+        String gender = txtGender.getText();
         String email = txtEmail.getText();
 
-        String sql = "INSERT INTO USERS(USERNAME, PASSWORD) VALUES (?, ?)";
+        String sql = "INSERT INTO USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, AGE, GENDER, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
+        preparedStatement.setString(3, firstName);
+        preparedStatement.setString(4, lastName);
+        preparedStatement.setString(5, age);
+        preparedStatement.setString(6, gender);
+        preparedStatement.setString(7, email);
         preparedStatement.executeUpdate();
         System.out.println("New Account Created!");
         System.out.printf("Username: %s \t Password: %s \n", username, password);
@@ -137,24 +142,6 @@ public class LoginController {
       }
     }
   }
-
-  /*
-    String username = txtUserName.getText();
-    String password = txtPassword.getText();
-    String sql = "INSERT INTO USERS(USERNAME, PASSWORD) VALUES (?, ?)";
-
-    try {
-      preparedStatement = connection.prepareStatement(sql);
-      preparedStatement.setString(1, username);
-      preparedStatement.setString(2, password);
-      preparedStatement.executeUpdate();
-      System.out.println("New Account Created!");
-      System.out.printf("Username: %s \t Password: %s \n", username, password);
-
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }*/
 
   @FXML
   public void initialize() {

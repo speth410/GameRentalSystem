@@ -1,6 +1,5 @@
 package GameRentalSystem;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -152,7 +151,7 @@ public class DashboardController {
 
     Dialog<ButtonType> addGame = new Dialog<>();
     addGame.setTitle("Add a New Game");
-    addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
+    addGame.setHeaderText("Enter the necessary information to \nadd a new game to the system.");
 
     Label lblTitle = new Label("Game Title: ");
     Label lblGenre = new Label("Genre: ");
