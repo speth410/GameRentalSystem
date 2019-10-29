@@ -16,6 +16,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <SplitPane dividerPositions="0.26588628762541805, 0.717391304347826" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="600.0" style="-fx-background-color: #121212;" styleClass=".spGames" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <items>
@@ -44,6 +45,24 @@
                <VBox.margin>
                   <Insets top="5.0" />
                </VBox.margin>
+               <children>
+                  <Label text="User Name:" textFill="WHITE" />
+                  <Label text="First Name:" textFill="WHITE" GridPane.rowIndex="1" />
+                  <Label text="Last Name:" textFill="#f8f8f8" GridPane.rowIndex="2" />
+                  <Label text="Age:" textFill="WHITE" GridPane.rowIndex="3" />
+                  <Label text="Gender:" textFill="WHITE" GridPane.rowIndex="4" />
+                  <Label text="Email:" textFill="WHITE" GridPane.rowIndex="5" />
+                  <Label text="Joined on:" textFill="WHITE" GridPane.rowIndex="6" />
+                  <Label text="Rented:" textFill="WHITE" GridPane.rowIndex="7" />
+                  <Text fx:id="txtDisplayUserName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="76.0" GridPane.columnIndex="1" />
+                  <Text fx:id="txtDisplayFirstName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <Text fx:id="txtDisplayLastName" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Text fx:id="txtDisplayAge" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Text fx:id="txtDisplayGender" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <Text fx:id="txtDisplayEmail" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+               </children>
             </GridPane>
             <GridPane>
               <columnConstraints>

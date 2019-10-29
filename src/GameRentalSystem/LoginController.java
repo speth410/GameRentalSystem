@@ -7,6 +7,7 @@ import com.jfoenix.controls.JFXTextField;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Optional;
 
 import javafx.fxml.FXML;
@@ -144,7 +145,7 @@ public class LoginController {
   }
 
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
     // Initialize the database and store the connection for later use.
     connection = dbHandler.initializeDB();
   }
