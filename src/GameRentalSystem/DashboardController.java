@@ -149,99 +149,103 @@ public class DashboardController {
 
   @FXML
   void handleAddGame(ActionEvent event) {
+    if (currentUser.equals("admin")) {
+      Dialog<ButtonType> addGame = new Dialog<>();
+      addGame.setTitle("Add a New Game");
+      addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
 
-    Dialog<ButtonType> addGame = new Dialog<>();
-    addGame.setTitle("Add a New Game");
-    addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
+      Label lblTitle = new Label("Game Title: ");
+      Label lblGenre = new Label("Genre: ");
+      Label lblRating = new Label("ESRB Rating: ");
+      Label lblPrice = new Label("Price: ");
+      Label lblGameImage = new Label("Game Image: ");
 
-    Label lblTitle = new Label("Game Title: ");
-    Label lblGenre = new Label("Genre: ");
-    Label lblRating = new Label("ESRB Rating: ");
-    Label lblPrice = new Label("Price: ");
-    Label lblGameImage = new Label("Game Image: ");
+      TextField txtTitle = new TextField();
 
-    TextField txtTitle = new TextField();
+      ChoiceBox<GameGenre> cbGenre = new ChoiceBox<>();
+      cbGenre.getItems().addAll(GameGenre.values());
 
-    ChoiceBox<GameGenre> cbGenre = new ChoiceBox<>();
-    cbGenre.getItems().addAll(GameGenre.values());
+      ChoiceBox<GameRating> cbRating = new ChoiceBox<>();
+      cbRating.getItems().addAll(GameRating.values());
 
-    ChoiceBox<GameRating> cbRating = new ChoiceBox<>();
-    cbRating.getItems().addAll(GameRating.values());
+      TextField txtPrice = new TextField();
+      TextField txtGameImage = new TextField();
 
-    TextField txtPrice = new TextField();
-    TextField txtGameImage = new TextField();
+      // Create a GridPane and add the elements to it.
+      GridPane grid = new GridPane();
+      grid.add(lblTitle, 1, 1);
+      grid.add(txtTitle, 2, 1);
+      grid.add(lblGenre, 1, 2);
+      grid.add(cbGenre, 2, 2);
+      grid.add(lblRating, 1, 3);
+      grid.add(cbRating, 2, 3);
+      grid.add(lblPrice, 1, 4);
+      grid.add(txtPrice, 2, 4);
+      grid.add(lblGameImage, 1, 5);
+      grid.add(txtGameImage, 2, 5);
 
-    // Create a GridPane and add the elements to it.
-    GridPane grid = new GridPane();
-    grid.add(lblTitle, 1, 1);
-    grid.add(txtTitle, 2, 1);
-    grid.add(lblGenre, 1, 2);
-    grid.add(cbGenre, 2, 2);
-    grid.add(lblRating, 1, 3);
-    grid.add(cbRating, 2, 3);
-    grid.add(lblPrice, 1, 4);
-    grid.add(txtPrice, 2, 4);
-    grid.add(lblGameImage, 1, 5);
-    grid.add(txtGameImage, 2, 5);
+      addGame.getDialogPane().setContent(grid);
 
-    addGame.getDialogPane().setContent(grid);
+      ButtonType btnSubmit = new ButtonType("Submit");
 
-    ButtonType btnSubmit = new ButtonType("Submit");
+      addGame.getDialogPane().getButtonTypes().add(btnSubmit);
+      addGame
+          .getDialogPane()
+          .getButtonTypes()
+          .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
 
-    addGame.getDialogPane().getButtonTypes().add(btnSubmit);
-    addGame
-        .getDialogPane()
-        .getButtonTypes()
-        .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
+      // When the user clicks the TextField for the Game Image.
+      txtGameImage.setOnMouseClicked(
+          e -> {
+            // Show a file chooser
+            selectedFile = fileChooser.showOpenDialog(dashboardStage);
 
-    // When the user clicks the TextField for the Game Image.
-    txtGameImage.setOnMouseClicked(
-        e -> {
-          // Show a file chooser
-          selectedFile = fileChooser.showOpenDialog(dashboardStage);
+            // Set the text of the text area to the filename of the selected file.
+            txtGameImage.setText(selectedFile.getName());
+          });
 
-          // Set the text of the text area to the filename of the selected file.
-          txtGameImage.setText(selectedFile.getName());
-        });
+      // Show the dialog and set event handler on submit button
+      Optional<ButtonType> result = addGame.showAndWait();
+      if (result.isPresent() && result.get() == btnSubmit) {
+        try {
 
-    // Show the dialog and set event handler on submit button
-    Optional<ButtonType> result = addGame.showAndWait();
-    if (result.isPresent() && result.get() == btnSubmit) {
-      try {
+          // Initialize fileIn as null to avoid a NullPointerException if the user doesn't add an
+          // image.
+          FileInputStream fileIn = null;
+          if (selectedFile != null) {
+            fileIn = new FileInputStream(selectedFile);
+          }
 
-        // Initialize fileIn as null to avoid a NullPointerException if the user doesn't add an
-        // image.
-        FileInputStream fileIn = null;
-        if (selectedFile != null) {
-          fileIn = new FileInputStream(selectedFile);
+          // Create a new Game object and add it to the games ArrayList.
+          games.add(
+              new Game(
+                  txtTitle.getText(),
+                  cbGenre.getValue(),
+                  cbRating.getValue(),
+                  txtPrice.getText(),
+                  fileIn));
+
+          // Insert new game into the database
+          String sql = "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE) VALUES (?, ?)";
+          PreparedStatement stmt = connection.prepareStatement(sql);
+          stmt.setString(1, txtTitle.getText());
+          stmt.setBinaryStream(2, fileIn);
+          stmt.executeUpdate();
+          getGames();
+
+          System.out.println("Size of games ArrayList: " + games.size());
+
+          // Test to show all of the Game objects stored within the games ArrayList.
+          for (Game game : games) {
+            game.print();
+          }
+        } catch (Exception ex) {
+          ex.printStackTrace();
         }
-
-        // Create a new Game object and add it to the games ArrayList.
-        games.add(
-            new Game(
-                txtTitle.getText(),
-                cbGenre.getValue(),
-                cbRating.getValue(),
-                txtPrice.getText(),
-                fileIn));
-
-        // Insert new game into the database
-        String sql = "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE) VALUES (?, ?)";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, txtTitle.getText());
-        stmt.setBinaryStream(2, fileIn);
-        stmt.executeUpdate();
-        getGames();
-
-        System.out.println("Size of games ArrayList: " + games.size());
-
-        // Test to show all of the Game objects stored within the games ArrayList.
-        for (Game game : games) {
-          game.print();
-        }
-      } catch (Exception ex) {
-        ex.printStackTrace();
       }
+    }
+    else {
+      System.out.println("not an admin");
     }
   }
 
