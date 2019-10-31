@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -26,6 +28,43 @@ public class LoginController {
   @FXML private JFXButton btnLogin;
   @FXML private Label lblError;
   @FXML private JFXButton btnCreateAccount;
+
+
+  @FXML
+  void handleLoginEnter(KeyEvent event) {
+    if(event.getCode() == KeyCode.ENTER) {
+      String username = txtUserID.getText();
+      String password = txtUserPass.getText();
+
+      String sql = "SELECT * FROM USERS WHERE USERNAME = ? AND PASSWORD = ?";
+
+      try {
+        // Create Prepared Statement using the sql query with user inputted username and password
+        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement.setString(1, username);
+        preparedStatement.setString(2, password);
+        resultSet = preparedStatement.executeQuery();
+
+        // If the login failed
+        if (!resultSet.next()) {
+          lblError.setStyle("-fx-text-fill: red");
+          lblError.setText("Incorrect Username/Password");
+          System.out.println("Incorrect Username/Password");
+        } else {
+          System.out.println("Login Successful");
+
+          // Get stage containing btnLogin and close it
+          Stage stage = (Stage) btnLogin.getScene().getWindow();
+          stage.close();
+
+          // Create dashboard controller
+          DashboardController dashboard = new DashboardController(username);
+        }
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+    }
+  }
 
   @FXML
   void handleLoginClicked(MouseEvent event) {
