@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -39,6 +40,13 @@ public class DashboardController {
   private Stage dashboardStage = new Stage();
   private FileChooser fileChooser = new FileChooser();
   private Game game;
+  public Text txtDisplayUserName;
+  @FXML public Text txtDisplayFirstName;
+  @FXML public Text txtDisplayLastName;
+  @FXML public Text txtDisplayAge;
+  @FXML public Text txtDisplayGender;
+  @FXML public Text txtDisplayEmail;
+
 
   private ArrayList<Game> games = new ArrayList<>();
 
@@ -69,7 +77,7 @@ public class DashboardController {
   }
 
   @FXML
-  public void initialize() {
+  public void initialize() throws SQLException {
 
     // Get Connection from dbHandler
     connection = dbHandler.initializeDB();
@@ -84,6 +92,8 @@ public class DashboardController {
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
     // lblUsername.setText("Username: " + currentUser);
+
+    getAccountInfo();
   }
 
   @FXML
@@ -308,6 +318,22 @@ public class DashboardController {
 
       // Add the VBox containing the games image and title to the TilePane
       tpGames.getChildren().add(vBox);
+    }
+  }
+
+  public void getAccountInfo() throws SQLException {
+    String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
+    PreparedStatement stmt = connection.prepareStatement(sql);
+    stmt.setString(1,currentUser);
+    ResultSet resultSetGetAccountInfo = stmt.executeQuery();
+
+    while (resultSetGetAccountInfo.next()){
+      txtDisplayUserName.setText(currentUser);
+      txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
+      txtDisplayLastName.setText(resultSetGetAccountInfo.getString("LAST_NAME"));
+      txtDisplayAge.setText(resultSetGetAccountInfo.getString("AGE"));
+      txtDisplayGender.setText(resultSetGetAccountInfo.getString("GENDER"));
+      txtDisplayEmail.setText(resultSetGetAccountInfo.getString("EMAIL"));
     }
   }
 }

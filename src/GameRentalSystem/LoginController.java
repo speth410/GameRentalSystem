@@ -163,7 +163,8 @@ public class LoginController {
         String gender = txtGender.getText();
         String email = txtEmail.getText();
 
-        String sql = "INSERT INTO USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, AGE, GENDER, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, AGE, GENDER, EMAIL)" +
+                " VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, username);
