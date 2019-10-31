@@ -1,6 +1,5 @@
 package GameRentalSystem;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -33,6 +32,7 @@ public class DashboardController {
   @FXML private TableColumn<?, ?> colRemove;
   @FXML private Button btnCheckout;
   @FXML private Label lblUsername;
+  @FXML private ContextMenu contextAddGame;
   private Connection connection = null;
   private String currentUser = null;
   private File selectedFile;
@@ -243,9 +243,12 @@ public class DashboardController {
           ex.printStackTrace();
         }
       }
-    }
-    else {
+    } else {
       System.out.println("not an admin");
+      Alert alert = new Alert(Alert.AlertType.WARNING);
+      alert.setTitle("Access Denied");
+      alert.setHeaderText("You must be logged in as an Administrator to add games!");
+      alert.showAndWait();
     }
   }
 

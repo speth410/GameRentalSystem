@@ -107,7 +107,7 @@
                   <Insets top="5.0" />
                </VBox.margin>
                <contextMenu>
-                  <ContextMenu>
+                  <ContextMenu fx:id="contextAddGame">
                     <items>
                       <MenuItem mnemonicParsing="false" onAction="#handleAddGame" text="Add Game" />
                     </items>
