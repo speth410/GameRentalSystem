@@ -1,0 +1,65 @@
+.lblGames {
+    -fx-background-color: #7161Ef;
+}
+
+/* Scroll Pane */
+.spGames {
+    -fx-background-color: rgba(255, 255, 255, 0.025);
+}
+
+.spGames > .viewport {
+    -fx-background-color: rgba(255, 255, 255, 0.025);
+}
+
+.spGames .scroll-bar:horizontal, .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.spGames .increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.spGames .scroll-bar:horizontal .track,
+.spGames .scroll-bar:vertical .track {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0em;
+}
+
+.spGames .scroll-bar:horizontal .thumb,
+.spGames .scroll-bar:vertical .thumb {
+    -fx-background-color:  #2A2E37;
+    -fx-background-radius: 5em;
+}
+
+.spGames > .corner {
+    -fx-background-color: rgba(255, 255, 255, 0.025);
+}
+
+/* End ScrollPane */
+
+
+.tpGames {
+    -fx-background-color: transparent;
+}
+
+/* Game Box */
+.gameBox {
+    -fx-padding: 5px;
+    -fx-border-insets: -.75px;
+    -fx-border-width: 1px;
+    -fx-background-insets: -1px;
+    -fx-min-height: 135px;
+}
+
+.gameBox:hover {
+    -fx-border-color: rgba(255, 255, 255, .1);
+    -fx-background-color: rgba(255, 255, 255, .05);
+}
+
+.gameTitle {
+    -fx-text-fill: white;
+}
+
+/* End Game Box */

@@ -112,8 +112,6 @@ public class DashboardController extends LoginController {
   @FXML
   void loadGameList(MouseEvent event) {
     loadUI("GameList");
-    System.out.println("GameList click");
-
   }
 
   @FXML

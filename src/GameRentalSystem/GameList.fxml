@@ -1,31 +1,52 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ContextMenu?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameRentalSystem.GameListController">
+<GridPane alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="418.0" prefWidth="596.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GameRentalSystem.GameListController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <Label alignment="CENTER" prefHeight="82.0" prefWidth="604.0" text="Games">
-         <font>
-            <Font name="Ebrima" size="40.0" />
-         </font>
-      </Label>
-      <ScrollPane fx:id="spGames" prefHeight="341.0" prefWidth="488.0">
-         <contextMenu>
-            <ContextMenu>
-              <items>
-                <MenuItem mnemonicParsing="false" text="handleAddGame" />
-              </items>
-            </ContextMenu>
-         </contextMenu>
-         <content>
-            <TilePane fx:id="tpGames" prefHeight="319.0" prefWidth="600.0" />
-         </content>
-      </ScrollPane>
+      <VBox fx:id="vbGames" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" styleClass="vbGames" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+         <children>
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="82.0" prefWidth="604.0" styleClass="lblGames" text="Games">
+               <font>
+                  <Font name="Ebrima" size="40.0" />
+               </font>
+            </Label>
+            <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="341.0" prefWidth="488.0" styleClass="spGames" VBox.vgrow="ALWAYS">
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem mnemonicParsing="false" text="Add Game" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+               <content>
+                  <TilePane fx:id="tpGames" prefHeight="319.0" prefWidth="600.0" styleClass="tpGames" />
+               </content>
+            </ScrollPane>
+         </children>
+         <stylesheets>
+            <URL value="@GamesList.css" />
+         </stylesheets>
+      </VBox>
    </children>
-</VBox>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>
