@@ -24,6 +24,8 @@ public class GameListController {
     @FXML private TilePane tpGames;
     @FXML private ScrollPane spGames;
     @FXML private HBox hBox;
+    @FXML
+    private VBox vbGames;
 
     @FXML public BorderPane borderpane; //belongs to UserInterface
     @FXML
@@ -52,9 +54,13 @@ public class GameListController {
         tpGames.prefHeightProperty().bind(spGames.heightProperty());
         tpGames.prefWidthProperty().bind(spGames.widthProperty());
 
+        //vbGames.prefHeightProperty().bind();
+
+
         // Retrieve and show games stored in the database
         getGames();
 
+        System.out.println("In games list");
     }
 
     @FXML
@@ -63,6 +69,8 @@ public class GameListController {
         // Remove all Game objects from the games ArrayList
         // Prevents duplicate entries
         games.clear();
+
+        System.out.println("Getting games.");
 
         String sql = "SELECT * FROM GAMES";
         List<ImageView> imageList = new ArrayList<>();
