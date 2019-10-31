@@ -15,9 +15,9 @@
    <left>
       <VBox prefHeight="500.0" prefWidth="187.0" style="-fx-background-color: #2A2E37;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="77.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
+            <Label alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
                <font>
-                  <Font size="21.0" />
+                  <Font name="Ebrima" size="21.0" />
                </font>
                <VBox.margin>
                   <Insets />

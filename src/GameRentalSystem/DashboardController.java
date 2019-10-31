@@ -25,22 +25,14 @@ import java.util.List;
 import java.util.Optional;
 
 public class DashboardController extends LoginController {
-  @FXML
-  private TilePane tpGames;
-  @FXML
-  private ScrollPane spGames;
-  @FXML
-  private HBox hBox;
-  @FXML
-  private TableView<CartItem> tvCart;
-  @FXML
-  private TableColumn<CartItem, String> colTitle;
-  @FXML
-  private TableColumn<?, ?> colRemove;
-  @FXML
-  private Button btnCheckout;
-  @FXML
-  private Label lblUsername;
+  @FXML private TilePane tpGames;
+  @FXML private ScrollPane spGames;
+  @FXML private HBox hBox;
+  @FXML private TableView<CartItem> tvCart;
+  @FXML private TableColumn<CartItem, String> colTitle;
+  @FXML private TableColumn<?, ?> colRemove;
+  @FXML private Button btnCheckout;
+  @FXML private Label lblUsername;
 
   private Connection connection = null;
   private String currentUser = null;
@@ -50,26 +42,19 @@ public class DashboardController extends LoginController {
   private Game game;
   public Text txtDisplayUserName;
 
-  @FXML
-  public BorderPane borderpane; //belongs to UserInterface
+  @FXML public BorderPane borderpane; // belongs to UserInterface
 
-  @FXML
-  public Text txtDisplayFirstName;
-  @FXML
-  public Text txtDisplayLastName;
-  @FXML
-  public Text txtDisplayAge;
-  @FXML
-  public Text txtDisplayGender;
-  @FXML
-  public Text txtDisplayEmail;
+  @FXML public Text txtDisplayFirstName;
+  @FXML public Text txtDisplayLastName;
+  @FXML public Text txtDisplayAge;
+  @FXML public Text txtDisplayGender;
+  @FXML public Text txtDisplayEmail;
 
   private ArrayList<Game> games = new ArrayList<>();
 
   public DashboardController(String username) {
     // Save the current users username
     currentUser = username;
-
 
     // Create new stage
     Stage dashboardStage = new Stage();
@@ -99,15 +84,12 @@ public class DashboardController extends LoginController {
     // Get Connection from dbHandler
     connection = dbHandler.initializeDB();
 
-
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
 
-//    getAccountInfo();
-
+    //    getAccountInfo();
 
   }
-
 
   @FXML
   void loadGameList(MouseEvent event) {
@@ -130,13 +112,11 @@ public class DashboardController extends LoginController {
     borderpane.setCenter(root);
   }
 
-
   @FXML
   void handleRemoveClicked(MouseEvent event) {
     CartItem item = tvCart.getSelectionModel().getSelectedItem();
     tvCart.getItems().remove(item);
   }
-
 
   public void getAccountInfo() throws SQLException {
     String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
@@ -150,4 +130,3 @@ public class DashboardController extends LoginController {
     }
   }
 }
-
