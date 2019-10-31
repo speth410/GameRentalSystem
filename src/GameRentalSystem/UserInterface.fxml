@@ -54,7 +54,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Browse Games" textFill="WHITE">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadGameList" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Browse Games" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -87,7 +87,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="191.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Settings" textFill="WHITE">
+            <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadReturn" prefHeight="67.0" prefWidth="191.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Settings" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
