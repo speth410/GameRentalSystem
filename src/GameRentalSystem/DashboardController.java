@@ -362,7 +362,6 @@ public class DashboardController extends LoginController {
     tvCart.getItems().remove(item);
   }
 
-
   public void getAccountInfo() throws SQLException {
     String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
     PreparedStatement stmt = connection.prepareStatement(sql);
@@ -375,4 +374,4 @@ public class DashboardController extends LoginController {
     }
   }
 }
-
+//khgjhgjh
