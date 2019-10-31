@@ -17,9 +17,9 @@
       </Label>
       <ScrollPane fx:id="spGames" prefHeight="341.0" prefWidth="488.0">
          <contextMenu>
-            <ContextMenu>
+            <ContextMenu onAction="#handleAddGame">
               <items>
-                <MenuItem mnemonicParsing="false" text="handleAddGame" />
+                <MenuItem mnemonicParsing="false" text="Add Game" />
               </items>
             </ContextMenu>
          </contextMenu>
