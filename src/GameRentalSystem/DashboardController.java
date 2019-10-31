@@ -4,16 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -35,6 +33,7 @@ public class DashboardController extends LoginController {
   @FXML private TableColumn<?, ?> colRemove;
   @FXML private Button btnCheckout;
   @FXML private Label lblUsername;
+
   private Connection connection = null;
   private String currentUser = null;
   private File selectedFile;
@@ -42,6 +41,9 @@ public class DashboardController extends LoginController {
   private FileChooser fileChooser = new FileChooser();
   private Game game;
   public Text txtDisplayUserName;
+
+  @FXML public BorderPane borderpane; //belongs to UserInterface
+
   @FXML public Text txtDisplayFirstName;
   @FXML public Text txtDisplayLastName;
   @FXML public Text txtDisplayAge;
@@ -56,11 +58,11 @@ public class DashboardController extends LoginController {
 
 
     // Create new stage
-    // Stage dashboardStage = new Stage();
+     Stage dashboardStage = new Stage();
 
     // Load the FXML file
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("User.fxml"));
 
       // Set this class as the controller
       loader.setController(this);
@@ -97,6 +99,49 @@ public class DashboardController extends LoginController {
 
 
   }
+
+
+
+
+
+
+//  @FXML
+//  void loadGameList(MouseEvent event) {
+//    loadUI("GameList");
+//
+//  }
+//
+//  @FXML
+//  void loadReturn(MouseEvent event) {
+//    borderpane.setCenter(null);
+//  }
+//
+//  private void loadUI(String ui) {
+//    Parent root = null;
+//
+//    try {
+//      root = FXMLLoader.load(getClass().getResource(ui+".fxml"));
+//    } catch (IOException e) {
+//      e.printStackTrace();
+//    }
+//    borderpane.setCenter(root);
+//  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   @FXML
   void handleRemoveClicked(MouseEvent event) {
