@@ -30,7 +30,7 @@
                         <Image url="@images/search.png" />
                      </image>
                   </ImageView>
-                  <JFXTextField prefHeight="59.0" prefWidth="162.0" promptText="Search">
+                  <JFXTextField prefHeight="59.0" prefWidth="162.0" promptText="Search" unFocusColor="WHITE">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
