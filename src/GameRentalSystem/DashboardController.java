@@ -224,7 +224,6 @@ public class DashboardController extends LoginController {
 
   @FXML
   void handleAddGame(ActionEvent event) {
-    if (currentUser.equals("admin")) {
       Dialog<ButtonType> addGame = new Dialog<>();
       addGame.setTitle("Add a New Game");
       addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
@@ -322,13 +321,6 @@ public class DashboardController extends LoginController {
           ex.printStackTrace();
         }
       }
-    } else {
-      System.out.println("not an admin");
-      Alert alert = new Alert(Alert.AlertType.WARNING);
-      alert.setTitle("Access Denied");
-      alert.setHeaderText("You must be logged in as an Administrator to add games!");
-      alert.showAndWait();
-    }
   }
 
 
