@@ -43,7 +43,7 @@ public class DashboardController extends LoginController {
   private Label lblUsername;
 
   private Connection connection = null;
-  private String currentUser = null;
+  private static String currentUser = null;
   private File selectedFile;
   private Stage dashboardStage = new Stage();
   private FileChooser fileChooser = new FileChooser();
@@ -332,6 +332,11 @@ public class DashboardController extends LoginController {
   }
 
   @FXML
+  void loadProfile(MouseEvent event) {
+      loadUI("Profile");
+  }
+
+  @FXML
   void loadReturn(MouseEvent event) {
     borderpane.setCenter(null);
   }
@@ -365,5 +370,9 @@ public class DashboardController extends LoginController {
       txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
     }
   }
+
+  public static String getCurrentUser() {
+    return currentUser;
+  }
 }
-//khgjhgjh
+

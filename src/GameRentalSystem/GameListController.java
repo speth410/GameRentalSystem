@@ -54,13 +54,10 @@ public class GameListController {
         tpGames.prefHeightProperty().bind(spGames.heightProperty());
         tpGames.prefWidthProperty().bind(spGames.widthProperty());
 
-        //vbGames.prefHeightProperty().bind();
-
-
         // Retrieve and show games stored in the database
         getGames();
 
-        System.out.println("In games list");
+        System.out.println("GamesList Logged in as " + DashboardController.getCurrentUser());
     }
 
     @FXML
