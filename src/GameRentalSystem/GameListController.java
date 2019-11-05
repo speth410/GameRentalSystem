@@ -72,6 +72,7 @@ public class GameListController {
         String sql = "SELECT * FROM GAMES";
         List<ImageView> imageList = new ArrayList<>();
         List<Label> labelList = new ArrayList<>();
+        List<Label> priceList = new ArrayList<>();
         try {
             Statement stmt = connection.createStatement();
             ResultSet rs = stmt.executeQuery(sql);
@@ -98,9 +99,13 @@ public class GameListController {
                 // Get game title from database
                 String gameTitle = rs.getString("GAME_TITLE");
 
+                // Get game price
+                String gamePrice = rs.getString("PRICE");
+
                 // Create a new ImageView and Label & store in an arrayList
                 imageList.add(new ImageView(image));
                 labelList.add(new Label(gameTitle));
+                priceList.add(new Label(gamePrice));
 
                 // Create a Game object for each game entry obtained from the database.
                 if (!games.contains(new Game(gameTitle, image))) {
@@ -111,7 +116,7 @@ public class GameListController {
                 }
             }
             // Pass Labels and ImageViews to method to be drawn to the scene
-            showGames(imageList, labelList);
+            showGames(imageList, labelList, priceList);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -215,7 +220,7 @@ public class GameListController {
         }
     }
 
-    private void showGames(List<ImageView> imageList, List<Label> labelList) {
+    private void showGames(List<ImageView> imageList, List<Label> labelList, List<Label> priceList) {
 
         tpGames.getChildren().clear();
 
@@ -233,13 +238,16 @@ public class GameListController {
             Label gameTitle = labelList.get(i);
             gameTitle.getStyleClass().add("gameTitle");
 
+            Label gamePrice = labelList.get(i);
+            gameTitle.getStyleClass().add("gamePrice");
+
             // Create a VBox for each game to contain the ImageView and Label
             VBox vBox = new VBox();
             vBox.setAlignment(Pos.TOP_CENTER);
             vBox.getStyleClass().add("gameBox");
 
             // Add the ImageView and Label to the VBox
-            vBox.getChildren().addAll(labelList.get(i), imageList.get(i));
+            vBox.getChildren().addAll(labelList.get(i), imageList.get(i), priceList.get(i));
 
             // Add and OnMouseClicked Event on each game listing
             vBox.setOnMouseClicked(

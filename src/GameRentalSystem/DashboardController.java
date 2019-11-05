@@ -301,7 +301,7 @@ public class DashboardController extends LoginController {
           stmt.setBinaryStream(2, fileIn);
           stmt.setString(3, cbRating.getValue().toString());
           stmt.setString(4, cbGenre.getValue().toString());
-          // stmt.setInt(5, txtPrice.getText();
+          stmt.setString(5, txtPrice.getText());
 
           stmt.executeUpdate();
           getGames();
