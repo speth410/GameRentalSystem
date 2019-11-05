@@ -80,6 +80,7 @@ public class DashboardController extends LoginController {
     }
   }
 
+  //
   @FXML
   public void initialize() throws SQLException {
 
