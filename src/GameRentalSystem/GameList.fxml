@@ -30,7 +30,7 @@
             </Label>
             <ScrollPane fx:id="spGames" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="341.0" prefWidth="488.0" styleClass="spGames" VBox.vgrow="ALWAYS">
                <contextMenu>
-                  <ContextMenu onAction="#handleAddGame">
+                  <ContextMenu>
                      <items>
                         <MenuItem mnemonicParsing="false" text="Add Game" />
                      </items>

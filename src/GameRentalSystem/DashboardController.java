@@ -25,22 +25,16 @@ import java.util.List;
 import java.util.Optional;
 
 public class DashboardController extends LoginController {
-  @FXML
-  private TilePane tpGames;
-  @FXML
-  private ScrollPane spGames;
-  @FXML
-  private HBox hBox;
-  @FXML
-  private TableView<CartItem> tvCart;
-  @FXML
-  private TableColumn<CartItem, String> colTitle;
-  @FXML
-  private TableColumn<?, ?> colRemove;
-  @FXML
-  private Button btnCheckout;
-  @FXML
-  private Label lblUsername;
+  @FXML private TilePane tpGames;
+  @FXML private ScrollPane spGames;
+  @FXML private HBox hBox;
+  @FXML private TableView<CartItem> tvCart;
+  @FXML private TableColumn<CartItem, String> colTitle;
+  @FXML private TableColumn<?, ?> colRemove;
+  @FXML private Button btnCheckout;
+  @FXML private Label lblUsername;
+  @FXML private Label topPanelTxt;
+  @FXML private Button butttonAG;
 
   private Connection connection = null;
   private static String currentUser = null;
@@ -50,26 +44,19 @@ public class DashboardController extends LoginController {
   private Game game;
   public Text txtDisplayUserName;
 
-  @FXML
-  public BorderPane borderpane; //belongs to UserInterface
+  @FXML public BorderPane borderpane; // belongs to UserInterface
 
-  @FXML
-  public Text txtDisplayFirstName;
-  @FXML
-  public Text txtDisplayLastName;
-  @FXML
-  public Text txtDisplayAge;
-  @FXML
-  public Text txtDisplayGender;
-  @FXML
-  public Text txtDisplayEmail;
+  @FXML public Text txtDisplayFirstName;
+  @FXML public Text txtDisplayLastName;
+  @FXML public Text txtDisplayAge;
+  @FXML public Text txtDisplayGender;
+  @FXML public Text txtDisplayEmail;
 
   private ArrayList<Game> games = new ArrayList<>();
 
   public DashboardController(String username) {
     // Save the current users username
     currentUser = username;
-
 
     // Create new stage
     Stage dashboardStage = new Stage();
@@ -98,13 +85,18 @@ public class DashboardController extends LoginController {
 
     // Get Connection from dbHandler
     connection = dbHandler.initializeDB();
-
-
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
+    topPanelTxt.setText(currentUser);
 
-//    getAccountInfo();
+    if (currentUser.equals("admin")){
 
+    }else {
+      butttonAG.setOpacity(0);
+      butttonAG.setDisable(true);
+    }
+
+    //    getAccountInfo();
 
   }
 
@@ -191,31 +183,31 @@ public class DashboardController extends LoginController {
 
       // Add and OnMouseClicked Event on each game listing
       vBox.setOnMouseClicked(
-              e -> {
-                tvCart.getColumns().clear();
+          e -> {
+            tvCart.getColumns().clear();
 
-                // Create temporary copy of the label contained within the VBox
-                Label title = (Label) vBox.getChildren().get(0);
+            // Create temporary copy of the label contained within the VBox
+            Label title = (Label) vBox.getChildren().get(0);
 
-                CartItem item = new CartItem(title.getText());
+            CartItem item = new CartItem(title.getText());
 
-                // Make the column and add it to the Table View
-                colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-                colTitle.getStyleClass().add("gameTitleColumn");
-                tvCart.getColumns().add(colTitle);
+            // Make the column and add it to the Table View
+            colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
+            colTitle.getStyleClass().add("gameTitleColumn");
+            tvCart.getColumns().add(colTitle);
 
-                // Check to make sure the game doesn't already exist in the cart
-                if (!tvCart.getItems().contains(item)) {
-                  tvCart.getItems().add(item);
-                } else {
+            // Check to make sure the game doesn't already exist in the cart
+            if (!tvCart.getItems().contains(item)) {
+              tvCart.getItems().add(item);
+            } else {
 
-                  // Show a dialog informing the user that the item is already in their cart.
-                  Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                  alert.setTitle("Duplicate item");
-                  alert.setHeaderText("That item is already in your cart!");
-                  alert.showAndWait();
-                }
-              });
+              // Show a dialog informing the user that the item is already in their cart.
+              Alert alert = new Alert(Alert.AlertType.INFORMATION);
+              alert.setTitle("Duplicate item");
+              alert.setHeaderText("That item is already in your cart!");
+              alert.showAndWait();
+            }
+          });
 
       // Add the VBox containing the games image and title to the TilePane
       tpGames.getChildren().add(vBox);
@@ -224,6 +216,7 @@ public class DashboardController extends LoginController {
 
   @FXML
   void handleAddGame(ActionEvent event) {
+    if (currentUser.equals("admin")) {
       Dialog<ButtonType> addGame = new Dialog<>();
       addGame.setTitle("Add a New Game");
       addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
@@ -264,19 +257,19 @@ public class DashboardController extends LoginController {
 
       addGame.getDialogPane().getButtonTypes().add(btnSubmit);
       addGame
-              .getDialogPane()
-              .getButtonTypes()
-              .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
+          .getDialogPane()
+          .getButtonTypes()
+          .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
 
       // When the user clicks the TextField for the Game Image.
       txtGameImage.setOnMouseClicked(
-              e -> {
-                // Show a file chooser
-                selectedFile = fileChooser.showOpenDialog(dashboardStage);
+          e -> {
+            // Show a file chooser
+            selectedFile = fileChooser.showOpenDialog(dashboardStage);
 
-                // Set the text of the text area to the filename of the selected file.
-                txtGameImage.setText(selectedFile.getName());
-              });
+            // Set the text of the text area to the filename of the selected file.
+            txtGameImage.setText(selectedFile.getName());
+          });
 
       // Show the dialog and set event handler on submit button
       Optional<ButtonType> result = addGame.showAndWait();
@@ -292,21 +285,22 @@ public class DashboardController extends LoginController {
 
           // Create a new Game object and add it to the games ArrayList.
           games.add(
-                  new Game(
-                          txtTitle.getText(),
-                          cbGenre.getValue(),
-                          cbRating.getValue(),
-                          txtPrice.getText(),
-                          fileIn));
+              new Game(
+                  txtTitle.getText(),
+                  cbGenre.getValue(),
+                  cbRating.getValue(),
+                  txtPrice.getText(),
+                  fileIn));
 
           // Insert new game into the database
-          String sql = "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE, ESRB_RATING, GENRE, PRICE) VALUES (?, ?, ?, ?, ?)";
+          String sql =
+              "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE, ESRB_RATING, GENRE, PRICE) VALUES (?, ?, ?, ?, ?)";
           PreparedStatement stmt = connection.prepareStatement(sql);
           stmt.setString(1, txtTitle.getText());
           stmt.setBinaryStream(2, fileIn);
           stmt.setString(3, cbRating.getValue().toString());
           stmt.setString(4, cbGenre.getValue().toString());
-          //stmt.setInt(5, txtPrice.getText();
+          // stmt.setInt(5, txtPrice.getText();
 
           stmt.executeUpdate();
           getGames();
@@ -321,14 +315,17 @@ public class DashboardController extends LoginController {
           ex.printStackTrace();
         }
       }
+    }
+    else {
+      butttonAG.setOpacity(0);
+      butttonAG.setDisable(true);
+    }
   }
-
 
   @FXML
   void loadGameList(MouseEvent event) {
     loadUI("GameList");
     System.out.println("GameList click");
-
   }
 
   @FXML
@@ -352,7 +349,6 @@ public class DashboardController extends LoginController {
     borderpane.setCenter(root);
   }
 
-
   @FXML
   void handleRemoveClicked(MouseEvent event) {
     CartItem item = tvCart.getSelectionModel().getSelectedItem();
@@ -375,4 +371,4 @@ public class DashboardController extends LoginController {
     return currentUser;
   }
 }
-
+// khgjhgjh

@@ -16,7 +16,8 @@
    <left>
       <VBox prefHeight="500.0" prefWidth="187.0" style="-fx-background-color: #2A2E37;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
+            <Label prefHeight="24.0" prefWidth="95.0" text="Welcome Back," textFill="WHITE" />
+            <Label fx:id="topPanelTxt" alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
                <font>
                   <Font name="Ebrima" size="21.0" />
                </font>
@@ -78,6 +79,7 @@
                   </ImageView>
                </graphic></Button>
             <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" styleClass="btnDashboard" text="Add Game" textFill="WHITE">
+            <Button fx:id="butttonAG" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAddGame" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Add Game" textFill="WHITE">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
