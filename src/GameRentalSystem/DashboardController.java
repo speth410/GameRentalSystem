@@ -3,36 +3,22 @@ package GameRentalSystem;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
-import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-import javax.swing.*;
-import javax.swing.text.LabelView;
 import java.io.*;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
-public class DashboardController extends LoginController {
+public class DashboardController {
   @FXML private TilePane tpGames;
   @FXML private ScrollPane spGames;
   @FXML private HBox hBox;
-  @FXML private TableView<CartItem> tvCart;
-  @FXML private TableColumn<CartItem, String> colTitle;
-  @FXML private TableColumn<?, ?> colRemove;
-  @FXML private Button btnCheckout;
-  @FXML private Label lblUsername;
   @FXML private Label topPanelTxt;
   @FXML private Button butttonAG;
 
@@ -41,18 +27,8 @@ public class DashboardController extends LoginController {
   private File selectedFile;
   private Stage dashboardStage = new Stage();
   private FileChooser fileChooser = new FileChooser();
-  private Game game;
-  public Text txtDisplayUserName;
 
-  @FXML public BorderPane borderpane; // belongs to UserInterface
-
-  @FXML public Text txtDisplayFirstName;
-  @FXML public Text txtDisplayLastName;
-  @FXML public Text txtDisplayAge;
-  @FXML public Text txtDisplayGender;
-  @FXML public Text txtDisplayEmail;
-
-  private ArrayList<Game> games = new ArrayList<>();
+  @FXML public BorderPane borderpane;
 
   public DashboardController(String username) {
     // Save the current users username
@@ -63,7 +39,7 @@ public class DashboardController extends LoginController {
 
     // Load the FXML file
     try {
-      FXMLLoader loader = new FXMLLoader(getClass().getResource("UserInterface.fxml"));
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 
       // Set this class as the controller
       loader.setController(this);
@@ -90,128 +66,11 @@ public class DashboardController extends LoginController {
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
     topPanelTxt.setText(currentUser);
 
-    if (currentUser.equals("admin")){
+    if (currentUser.equals("admin")) {
 
-    }else {
+    } else {
       butttonAG.setOpacity(0);
       butttonAG.setDisable(true);
-    }
-
-    //    getAccountInfo();
-
-  }
-
-  @FXML
-  private void getGames() {
-
-    // Remove all Game objects from the games ArrayList
-    // Prevents duplicate entries
-    games.clear();
-
-    String sql = "SELECT * FROM GAMES";
-    List<ImageView> imageList = new ArrayList<>();
-    List<Label> labelList = new ArrayList<>();
-    try {
-      Statement stmt = connection.createStatement();
-      ResultSet rs = stmt.executeQuery(sql);
-      while (rs.next()) {
-
-        // Get Image from database
-        InputStream input = rs.getBinaryStream("GAME_IMAGE");
-        InputStreamReader inputReader = new InputStreamReader(input);
-
-        // Save image as tempFile.jpg
-        File tempFile = new File("res/img/tempFile.jpg");
-        FileOutputStream fos = new FileOutputStream(tempFile);
-
-        if (inputReader.ready()) {
-          byte[] buffer = new byte[1024];
-          while (input.read(buffer) > 0) {
-            fos.write(buffer);
-          }
-        }
-
-        // Load tempFile as Image
-        Image image = new Image(tempFile.toURI().toURL().toString());
-
-        // Get game title from database
-        String gameTitle = rs.getString("GAME_TITLE");
-
-        // Create a new ImageView and Label & store in an arrayList
-        imageList.add(new ImageView(image));
-        labelList.add(new Label(gameTitle));
-
-        // Create a Game object for each game entry obtained from the database.
-        if (!games.contains(new Game(gameTitle, image))) {
-          games.add(new Game(gameTitle, image));
-          System.out.println("Added: " + gameTitle);
-        } else {
-          System.out.println("Duplicate found");
-        }
-      }
-      // Pass Labels and ImageViews to method to be drawn to the scene
-      showGames(imageList, labelList);
-    } catch (Exception e) {
-      e.printStackTrace();
-    }
-  }
-
-  private void showGames(List<ImageView> imageList, List<Label> labelList) {
-
-    tpGames.getChildren().clear();
-
-    // For each element in the array (Both arrays should be the same size)
-    for (int i = 0; i < imageList.size(); i++) {
-
-      // Copy the ImageView in imageList, resize, and put it back.
-      ImageView images = imageList.get(i);
-      images.setFitHeight(100);
-      images.setFitWidth(60);
-      images.getStyleClass().add("gameImage");
-
-      imageList.set(i, images);
-
-      Label gameTitle = labelList.get(i);
-      gameTitle.getStyleClass().add("gameTitle");
-
-      // Create a VBox for each game to contain the ImageView and Label
-      VBox vBox = new VBox();
-      vBox.setAlignment(Pos.TOP_CENTER);
-      vBox.getStyleClass().add("gameBox");
-
-      // Add the ImageView and Label to the VBox
-      vBox.getChildren().addAll(labelList.get(i), imageList.get(i));
-
-      // Add and OnMouseClicked Event on each game listing
-      vBox.setOnMouseClicked(
-          e -> {
-            tvCart.getColumns().clear();
-
-            // Create temporary copy of the label contained within the VBox
-            Label title = (Label) vBox.getChildren().get(0);
-
-            CartItem item = new CartItem(title.getText());
-
-            // Make the column and add it to the Table View
-            colTitle.setCellValueFactory(new PropertyValueFactory<>("title"));
-            colTitle.getStyleClass().add("gameTitleColumn");
-            tvCart.getColumns().add(colTitle);
-
-            // Check to make sure the game doesn't already exist in the cart
-            if (!tvCart.getItems().contains(item)) {
-              tvCart.getItems().add(item);
-            } else {
-
-              // Show a dialog informing the user that the item is already in their cart.
-              Alert alert = new Alert(Alert.AlertType.INFORMATION);
-              alert.setTitle("Duplicate item");
-              alert.setHeaderText("That item is already in your cart!");
-              alert.showAndWait();
-            }
-          });
-
-      // Add the VBox containing the games image and title to the TilePane
-      tpGames.getChildren().add(vBox);
     }
   }
 
@@ -284,14 +143,13 @@ public class DashboardController extends LoginController {
             fileIn = new FileInputStream(selectedFile);
           }
 
-          // Create a new Game object and add it to the games ArrayList.
-          games.add(
-              new Game(
-                  txtTitle.getText(),
-                  cbGenre.getValue(),
-                  cbRating.getValue(),
-                  txtPrice.getText(),
-                  fileIn));
+          // Create a new Game object.
+          new Game(
+              txtTitle.getText(),
+              cbGenre.getValue(),
+              cbRating.getValue(),
+              txtPrice.getText(),
+              fileIn);
 
           // Insert new game into the database
           String sql =
@@ -304,34 +162,28 @@ public class DashboardController extends LoginController {
           stmt.setString(5, txtPrice.getText());
 
           stmt.executeUpdate();
-          getGames();
 
-          System.out.println("Size of games ArrayList: " + games.size());
-
-          // Test to show all of the Game objects stored within the games ArrayList.
-          for (Game game : games) {
-            game.print();
-          }
         } catch (Exception ex) {
           ex.printStackTrace();
         }
       }
-    }
-    else {
+    } else {
       butttonAG.setOpacity(0);
       butttonAG.setDisable(true);
     }
   }
 
+  // Show the GameList.fxml
   @FXML
   void loadGameList(MouseEvent event) {
     loadUI("GameList");
     System.out.println("GameList click");
   }
 
+  // Show the Profile.fxml
   @FXML
   void loadProfile(MouseEvent event) {
-      loadUI("Profile");
+    loadUI("Profile");
   }
 
   @FXML
@@ -350,26 +202,7 @@ public class DashboardController extends LoginController {
     borderpane.setCenter(root);
   }
 
-  @FXML
-  void handleRemoveClicked(MouseEvent event) {
-    CartItem item = tvCart.getSelectionModel().getSelectedItem();
-    tvCart.getItems().remove(item);
-  }
-
-  public void getAccountInfo() throws SQLException {
-    String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
-    PreparedStatement stmt = connection.prepareStatement(sql);
-    stmt.setString(1, currentUser);
-    ResultSet resultSetGetAccountInfo = stmt.executeQuery();
-
-    while (resultSetGetAccountInfo.next()) {
-      txtDisplayUserName.setText(currentUser);
-      txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
-    }
-  }
-
   public static String getCurrentUser() {
     return currentUser;
   }
 }
-// khgjhgjh
