@@ -21,6 +21,8 @@ public class DashboardController {
   @FXML private HBox hBox;
   @FXML private Label topPanelTxt;
   @FXML private Button butttonAG;
+  @FXML private Button butttonLogout;
+
 
   private Connection connection = null;
   private static String currentUser = null;
@@ -70,6 +72,30 @@ public class DashboardController {
       butttonAG.setOpacity(0);
       butttonAG.setDisable(true);
     }
+  }
+
+  @FXML
+  void logoutClicked(MouseEvent event) {
+    // Create new stage
+    Stage loginStage = new Stage();
+
+    // Load the FXML file
+    try {
+      FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
+
+      // Load the scene
+      loginStage.setScene(new Scene(loader.load()));
+
+      // Setup the window/stage
+      loginStage.setTitle("Game Rental System");
+      loginStage.show();
+      Stage stage = (Stage) butttonLogout.getScene().getWindow();
+      stage.close();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    System.out.println("logout Clicked");
   }
 
   @FXML
