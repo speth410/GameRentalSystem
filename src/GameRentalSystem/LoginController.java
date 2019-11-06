@@ -29,10 +29,11 @@ public class LoginController {
   @FXML private Label lblError;
   @FXML private JFXButton btnCreateAccount;
 
-
   @FXML
   void handleLoginEnter(KeyEvent event) {
-    if(event.getCode() == KeyCode.ENTER) {
+    connection = dbHandler.initializeDB();
+
+    if (event.getCode() == KeyCode.ENTER) {
       String username = txtUserID.getText();
       String password = txtUserPass.getText();
 
@@ -63,11 +64,15 @@ public class LoginController {
       } catch (Exception e) {
         e.printStackTrace();
       }
+      dbHandler.close(resultSet);
+      dbHandler.close(preparedStatement);
+      dbHandler.close(connection);
     }
   }
 
   @FXML
   void handleLoginClicked(MouseEvent event) {
+    connection = dbHandler.initializeDB();
     String username = txtUserID.getText();
     String password = txtUserPass.getText();
 
@@ -98,10 +103,15 @@ public class LoginController {
     } catch (Exception e) {
       e.printStackTrace();
     }
+    dbHandler.close(resultSet);
+    dbHandler.close(preparedStatement);
+    dbHandler.close(connection);
   }
 
   @FXML
   void handleCreateAccount(MouseEvent event) {
+    connection = dbHandler.initializeDB();
+
     Dialog<ButtonType> createAccount = new Dialog<>();
     createAccount.setTitle("Create New Account");
     createAccount.setHeaderText("Enter your personal information for this account.");
@@ -163,7 +173,8 @@ public class LoginController {
         String gender = txtGender.getText();
         String email = txtEmail.getText();
 
-        String sql = "INSERT INTO USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, AGE, GENDER, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql =
+            "INSERT INTO USERS(USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, AGE, GENDER, EMAIL) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, username);
@@ -180,12 +191,13 @@ public class LoginController {
       } catch (Exception e) {
         e.printStackTrace();
       }
+      dbHandler.close(preparedStatement);
+      dbHandler.close(connection);
     }
   }
 
   @FXML
-  public void initialize() throws SQLException {
-    // Initialize the database and store the connection for later use.
-    connection = dbHandler.initializeDB();
+  public void initialize() {
+
   }
 }

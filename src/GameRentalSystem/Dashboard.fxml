@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,110 +13,97 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import java.net.URL?>
-<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #2A2E37;"
-            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: #2A2E37;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
     <left>
         <VBox prefHeight="500.0" prefWidth="187.0" style="-fx-background-color: #2A2E37;" BorderPane.alignment="CENTER">
             <children>
-                <Label prefHeight="24.0" prefWidth="95.0" text="Welcome Back," textFill="WHITE"/>
-                <Label fx:id="topPanelTxt" alignment="CENTER" prefHeight="80.0" prefWidth="218.0"
-                       style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
+                <Label prefHeight="24.0" prefWidth="95.0" text="Welcome Back," textFill="WHITE" />
+                <Label fx:id="topPanelTxt" alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
                     <font>
-                        <Font name="Ebrima" size="21.0"/>
+                        <Font name="Ebrima" size="21.0" />
                     </font>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                 </Label>
                 <HBox prefHeight="27.0" prefWidth="187.0">
                     <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/search.png"/>
+                                <Image url="@images/search.png" />
                             </image>
                         </ImageView>
                         <JFXTextField prefHeight="59.0" prefWidth="162.0" promptText="Search" unFocusColor="WHITE">
                             <padding>
-                                <Insets top="10.0"/>
+                                <Insets top="10.0" />
                             </padding>
                         </JFXTextField>
                     </children>
                     <VBox.margin>
-                        <Insets/>
+                        <Insets />
                     </VBox.margin>
                     <padding>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </padding>
                 </HBox>
-                <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="197.0"
-                        style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Profile"
-                        textFill="WHITE">
+                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Profile" textFill="WHITE">
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/Profile.png"/>
+                                <Image url="@images/Profile.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadGameList" prefHeight="67.0"
-                        prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;"
-                        text="Browse Games" textFill="WHITE">
+                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadGameList" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Browse Games" textFill="WHITE">
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/List.png"/>
+                                <Image url="@images/List.png" />
                             </image>
                             <effect>
-                                <ColorAdjust/>
+                                <ColorAdjust />
                             </effect>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="197.0"
-                        style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Item Cart"
-                        textFill="WHITE">
+                <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Item Cart" textFill="WHITE">
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/CartFull.png"/>
+                                <Image url="@images/CartFull.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="butttonAG" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAddGame"
-                        prefHeight="67.0" prefWidth="197.0"
-                        style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Add Game"
-                        textFill="WHITE">
+                <Button fx:id="butttonAG" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAddGame" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Add Game" textFill="WHITE">
                     <VBox.margin>
-                        <Insets top="10.0"/>
+                        <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
                         <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@images/Save.png"/>
+                                <Image url="@images/Save.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
             </children>
             <BorderPane.margin>
-                <Insets left="5.0" top="5.0"/>
+                <Insets left="5.0" top="5.0" />
             </BorderPane.margin>
         </VBox>
     </left>
     <stylesheets>
-        <URL value="@Dashboard.css"/>
+        <URL value="@Dashboard.css" />
     </stylesheets>
 </BorderPane>

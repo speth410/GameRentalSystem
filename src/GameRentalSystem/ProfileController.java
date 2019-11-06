@@ -13,7 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Optional;
 
-public class ProfileController extends LoginController{
+public class ProfileController {
 
     private String currentUser = null;
     private Connection connection = null;

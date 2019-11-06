@@ -60,8 +60,6 @@ public class DashboardController {
   @FXML
   public void initialize() throws SQLException {
 
-    // Get Connection from dbHandler
-    connection = dbHandler.initializeDB();
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
     topPanelTxt.setText(currentUser);
@@ -152,17 +150,21 @@ public class DashboardController {
               fileIn);
 
           // Insert new game into the database
+          connection = dbHandler.initializeDB();
+
           String sql =
               "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE, ESRB_RATING, GENRE, PRICE) VALUES (?, ?, ?, ?, ?)";
-          PreparedStatement stmt = connection.prepareStatement(sql);
-          stmt.setString(1, txtTitle.getText());
-          stmt.setBinaryStream(2, fileIn);
-          stmt.setString(3, cbRating.getValue().toString());
-          stmt.setString(4, cbGenre.getValue().toString());
-          stmt.setString(5, txtPrice.getText());
+          PreparedStatement ps = connection.prepareStatement(sql);
+          ps.setString(1, txtTitle.getText());
+          ps.setBinaryStream(2, fileIn);
+          ps.setString(3, cbRating.getValue().toString());
+          ps.setString(4, cbGenre.getValue().toString());
+          ps.setString(5, txtPrice.getText());
 
-          stmt.executeUpdate();
+          ps.executeUpdate();
 
+          dbHandler.close(ps);
+          dbHandler.close(connection);
         } catch (Exception ex) {
           ex.printStackTrace();
         }

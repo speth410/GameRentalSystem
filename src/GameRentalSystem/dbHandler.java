@@ -1,8 +1,6 @@
 package GameRentalSystem;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class dbHandler {
   Connection conn = null;
@@ -26,6 +24,31 @@ public class dbHandler {
     } catch (SQLException e) {
       e.printStackTrace();
       return null;
+    }
+  }
+
+  public static void close(ResultSet rs) {
+    try {
+      rs.close();
+      System.out.println("ResultSet closed.");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  public static void close(PreparedStatement ps) {
+    try {
+      ps.close();
+      System.out.println("PreparedStatement closed.");
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+  public static void close(Connection conn) {
+    try {
+      conn.close();
+      System.out.println("Connection closed.");
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
   }
 }
