@@ -74,6 +74,10 @@ public class DashboardController {
     }
   }
 
+  /**
+   * logout
+   * @param event
+   */
   @FXML
   void logoutClicked(MouseEvent event) {
     // Create new stage
