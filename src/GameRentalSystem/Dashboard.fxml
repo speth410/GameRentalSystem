@@ -73,7 +73,7 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Item Cart" textFill="WHITE">
+                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadCart" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Item Cart" textFill="WHITE">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>

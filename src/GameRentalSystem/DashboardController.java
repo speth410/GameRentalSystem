@@ -188,6 +188,12 @@ public class DashboardController {
     loadUI("Profile");
   }
 
+  // Show the Cart
+  @FXML
+  void loadCart(MouseEvent event) {
+    loadUI("Cart");
+  }
+
   @FXML
   void loadReturn(MouseEvent event) {
     borderpane.setCenter(null);
