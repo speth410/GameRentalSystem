@@ -134,7 +134,7 @@ public class GameListController {
       Label gameTitle = labelList.get(i);
       gameTitle.getStyleClass().add("gameTitle");
 
-      Label gamePrice = labelList.get(i);
+      Label gamePrice = priceList.get(i);
       gamePrice.getStyleClass().add("gamePrice");
 
       // Create a VBox for each game to contain the ImageView and Label
