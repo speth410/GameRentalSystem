@@ -97,6 +97,15 @@
                         </ImageView>
                     </graphic>
                 </Button>
+            <Button fx:id="butttonLogout" contentDisplay="TOP" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#logoutClicked" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Logout" textFill="WHITE">
+               <graphic>
+                  <ImageView fitHeight="60.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" translateX="7.0">
+                     <image>
+                        <Image url="@images/Exit.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             </children>
             <BorderPane.margin>
                 <Insets left="5.0" top="5.0" />
