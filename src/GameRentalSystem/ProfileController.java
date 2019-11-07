@@ -1,86 +1,215 @@
 package GameRentalSystem;
 
-
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;///
+import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text; ///
+
+import java.io.*;
+import java.net.MalformedURLException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class ProfileController {
 
-    private String currentUser = null;
-    private Connection connection = null;
-    public Text txtDisplayUserName;
-    @FXML public BorderPane borderpane; //belongs to UserInterface
-    @FXML public Text txtDisplayFirstName;
-    @FXML public Text txtDisplayLastName;
-    @FXML public Text txtDisplayAge;
-    @FXML public Text txtDisplayGender;
-    @FXML public Text txtDisplayEmail;
+  private String currentUser = null;
+  private Connection connection = null;
+  public Text txtDisplayUserName;
+  @FXML public BorderPane borderpane; // belongs to UserInterface
+  @FXML public Text txtDisplayFirstName;
+  @FXML public Text txtDisplayLastName;
+  @FXML public Text txtDisplayAge;
+  @FXML public Text txtDisplayGender;
+  @FXML public Text txtDisplayEmail;
+  @FXML private ScrollPane spRentals;
+  @FXML private TilePane tpRentals;
 
-    @FXML
-    public void initialize() throws SQLException {
-        // Initialize the database and store the connection for later use.
-        connection = dbHandler.initializeDB();
-        getAccountInfo();
+  private ArrayList<Game> cartList = new ArrayList<>();
 
+  @FXML
+  public void initialize() throws SQLException {
+    // Initialize the database and store the connection for later use.
+    connection = dbHandler.initializeDB();
+    cartList = GameListController.getCartList();
+
+    getAccountInfo();
+
+    tpRentals.prefHeightProperty().bind(spRentals.heightProperty());
+    tpRentals.prefWidthProperty().bind(spRentals.widthProperty());
+
+    ArrayList<Integer> gameIds = getOrders();
+    ArrayList<Game> games = getGames(gameIds);
+    showRentals(games);
+
+  }
+
+  public void showRentals(ArrayList<Game> games) {
+    for (int i = 0; i < games.size(); i++) {
+
+      // Copy the ImageView in imageList, resize, and put it back.
+      ImageView image = new ImageView(games.get(i).getGameImage());
+      image.setFitHeight(100);
+      image.setFitWidth(60);
+      image.getStyleClass().add("gameImage");
+
+      Label gameTitle = new Label(games.get(i).getGameTitle());
+      gameTitle.getStyleClass().add("gameTitle");
+
+      // Create a VBox for each game to contain the ImageView and Label
+      VBox vBox = new VBox();
+      vBox.setAlignment(Pos.TOP_CENTER);
+      vBox.getStyleClass().add("gameBox");
+
+      // Add the ImageView and Label to the VBox
+      vBox.getChildren().addAll(gameTitle, image);
+
+      tpRentals.getChildren().add(vBox);
     }
+  }
 
-    public void getAccountInfo() throws SQLException {
-        String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
-        PreparedStatement stmt = connection.prepareStatement(sql);
-        stmt.setString(1, currentUser);
-        ResultSet resultSetGetAccountInfo = stmt.executeQuery();
+  private ArrayList<Game> getGames(ArrayList<Integer> gameId) {
+    Connection conn = dbHandler.initializeDB();
+    ArrayList<Game> game = new ArrayList<>();
 
-        while (resultSetGetAccountInfo.next()) {
-            txtDisplayUserName.setText(currentUser);
-            txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
-            txtDisplayLastName.setText(resultSetGetAccountInfo.getString("LAST_NAME"));
-            txtDisplayAge.setText(resultSetGetAccountInfo.getString("AGE"));
-            txtDisplayGender.setText(resultSetGetAccountInfo.getString("GENDER"));
-            txtDisplayEmail.setText(resultSetGetAccountInfo.getString("EMAIL"));
+    try {
+      for (int i = 0; i < gameId.size(); i++) {
+        String sql = "SELECT * FROM GAMES WHERE GAME_ID = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+
+        ps.setInt(1, gameId.get(i));
+
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+          String gameTitle = rs.getString("GAME_TITLE");
+
+          // Get Image from database
+          InputStream input = rs.getBinaryStream("GAME_IMAGE");
+          InputStreamReader inputReader = new InputStreamReader(input);
+
+          // Save image as tempFile.jpg
+          File tempFile = new File("res/img/tempFile.jpg");
+          FileOutputStream fos = new FileOutputStream(tempFile);
+
+          if (inputReader.ready()) {
+            byte[] buffer = new byte[1024];
+            while (input.read(buffer) > 0) {
+              fos.write(buffer);
+            }
+          }
+
+          // Load tempFile as Image
+          Image image = new Image(tempFile.toURI().toURL().toString());
+          game.add(new Game(gameTitle, image));
         }
+      }
+    } catch (SQLException | IOException e) {
+      e.printStackTrace();
     }
+    return game;
+  }
 
-    @FXML
-    void changeEmail(MouseEvent event) {
-        Dialog<ButtonType> emailChange = new Dialog<>();
-        emailChange.setTitle("Change Email");
-        emailChange.setHeaderText("Enter a new email");
+  public ArrayList<Integer> getOrders() {
+    Connection conn = dbHandler.initializeDB();
+    ArrayList<Integer> gameId = new ArrayList<>();
 
-        // labels to instruct the user to enter information
-        Label lblOldPassword = new Label("old password: ");
-        Label lblNewPassword = new Label("new password: ");
+    try {
+      String sql = "SELECT GAME_ID FROM ORDERS WHERE USER_ID = ?";
+      PreparedStatement ps = conn.prepareStatement(sql);
+      ps.setInt(1, getUserId());
 
-        // text fields to obtain the user input for each
-        TextField txtOldPassword = new TextField();
-        TextField txtNewPassword = new TextField();
-
-        GridPane grid = new GridPane();
-        grid.add(lblOldPassword, 1, 1);
-        grid.add(txtOldPassword, 2, 1);
-        grid.add(lblNewPassword, 1, 2);
-        grid.add(txtNewPassword, 2, 2);
-
-        // attaching the grid pane to the dialog pane
-        emailChange.getDialogPane().setContent(grid);
-
-        // creates the submit button
-        ButtonType btnSubmit = new ButtonType("Submit");
-
-        emailChange.getDialogPane().getButtonTypes().add(btnSubmit);
-        emailChange
-                .getDialogPane()
-                .getButtonTypes()
-                .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
-
-        Optional<ButtonType> result = emailChange.showAndWait();
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+        gameId.add(rs.getInt("GAME_ID"));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
     }
+    return gameId;
+  }
+
+  private int getUserId() {
+    Connection conn = dbHandler.initializeDB();
+    int id = 0;
+
+    try {
+      String sql = "SELECT USER_ID FROM USERS WHERE USERNAME = ?";
+      PreparedStatement ps = conn.prepareStatement(sql);
+      ps.setString(1, DashboardController.getCurrentUser());
+
+      ResultSet rs = ps.executeQuery();
+
+      if (rs.next()) {
+        id = rs.getInt("USER_ID");
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return id;
+  }
+
+  public void getAccountInfo() {
+    String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
+    try {
+      PreparedStatement stmt = connection.prepareStatement(sql);
+      stmt.setString(1, currentUser);
+      ResultSet resultSetGetAccountInfo = stmt.executeQuery();
+
+      while (resultSetGetAccountInfo.next()) {
+        txtDisplayUserName.setText(currentUser);
+        txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
+        txtDisplayLastName.setText(resultSetGetAccountInfo.getString("LAST_NAME"));
+        txtDisplayAge.setText(resultSetGetAccountInfo.getString("AGE"));
+        txtDisplayGender.setText(resultSetGetAccountInfo.getString("GENDER"));
+        txtDisplayEmail.setText(resultSetGetAccountInfo.getString("EMAIL"));
+      }
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+  }
+
+  @FXML
+  void changeEmail(MouseEvent event) {
+    Dialog<ButtonType> emailChange = new Dialog<>();
+    emailChange.setTitle("Change Email");
+    emailChange.setHeaderText("Enter a new email");
+
+    // labels to instruct the user to enter information
+    Label lblOldPassword = new Label("old password: ");
+    Label lblNewPassword = new Label("new password: ");
+
+    // text fields to obtain the user input for each
+    TextField txtOldPassword = new TextField();
+    TextField txtNewPassword = new TextField();
+
+    GridPane grid = new GridPane();
+    grid.add(lblOldPassword, 1, 1);
+    grid.add(txtOldPassword, 2, 1);
+    grid.add(lblNewPassword, 1, 2);
+    grid.add(txtNewPassword, 2, 2);
+
+    // attaching the grid pane to the dialog pane
+    emailChange.getDialogPane().setContent(grid);
+
+    // creates the submit button
+    ButtonType btnSubmit = new ButtonType("Submit");
+
+    emailChange.getDialogPane().getButtonTypes().add(btnSubmit);
+    emailChange
+        .getDialogPane()
+        .getButtonTypes()
+        .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
+
+    Optional<ButtonType> result = emailChange.showAndWait();
+  }
 }

@@ -17,6 +17,10 @@ public class Game {
     this.gameImage = gameImage;
   }
 
+  public Image getGameImage() {
+    return gameImage;
+  }
+
   public Game(
       String gameTitle, GameGenre genre, GameRating rating, String price, FileInputStream fileIn) {
     this.gameTitle = gameTitle;
