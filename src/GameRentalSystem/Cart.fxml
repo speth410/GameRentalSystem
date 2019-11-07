@@ -38,7 +38,12 @@
             </TableView>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" maxHeight="-Infinity" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="NEVER">
                <children>
-                  <JFXButton style="-fx-background-color: #7161Ef;" text="Checkout">
+                  <JFXButton onMouseClicked="#handleRemove" style="-fx-background-color: white;" text="Remove">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </JFXButton>
+                  <JFXButton onMouseClicked="#handleCheckout" style="-fx-background-color: #7161Ef;" text="Checkout">
                      <HBox.margin>
                         <Insets bottom="5.0" right="5.0" top="5.0" />
                      </HBox.margin>

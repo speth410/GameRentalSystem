@@ -264,7 +264,10 @@ public class GameListController {
   }
 
   public static ArrayList<Game> getCartList() {
-    System.out.println("CartList returned.");
     return cartList;
+  }
+
+  public static void setCartList(ArrayList<Game> cartList) {
+    GameListController.cartList = cartList;
   }
 }
