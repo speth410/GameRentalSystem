@@ -33,7 +33,7 @@
             <RowConstraints maxHeight="138.6666717529297" minHeight="10.0" prefHeight="45.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Label prefHeight="22.0" prefWidth="141.0" styleClass="lbl" text="INFORMATON &amp; BILLING" />
+            <Label prefHeight="22.0" prefWidth="194.0" styleClass="lbl" text="INFORMATON &amp; BILLING" />
             <Text fx:id="txtDisplayEmail" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" wrappingWidth="162.13671875" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="******" wrappingWidth="69.00000047683716" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="txt" text="phone #" wrappingWidth="95.3203125" GridPane.columnIndex="1" GridPane.rowIndex="3" />
@@ -44,10 +44,10 @@
       </GridPane>
       <Separator prefHeight="4.0" prefWidth="600.0" />
       <Label styleClass="lbl" text="MY PROFILE" />
-      <GridPane maxWidth="-Infinity" prefHeight="169.0" prefWidth="250.0">
+      <GridPane maxWidth="-Infinity" prefHeight="136.0" prefWidth="308.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="50.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="183.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="120.0" minWidth="10.0" prefWidth="120.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="183.0" minWidth="10.0" prefWidth="130.0" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />

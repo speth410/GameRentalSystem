@@ -67,6 +67,18 @@ public class CartController {
     tvCart.getItems().remove(game);
     cartList.remove(game);
 
+
+    // Pass the updated cartList back to the GameListController to reflect the changes.
+    GameListController.setCartList(cartList);
+  }
+
+  @FXML
+  void handleRemoveAll(MouseEvent event) {
+
+    // Remove the game from the TableView and the cartList.
+    tvCart.getItems().clear();
+    cartList.clear();
+
     // Pass the updated cartList back to the GameListController to reflect the changes.
     GameListController.setCartList(cartList);
   }

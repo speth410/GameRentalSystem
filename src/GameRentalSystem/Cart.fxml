@@ -38,6 +38,7 @@
             </TableView>
             <HBox alignment="CENTER_RIGHT" fillHeight="false" maxHeight="-Infinity" prefHeight="25.0" prefWidth="200.0" style="-fx-background-color: transparent;" VBox.vgrow="NEVER">
                <children>
+                  <JFXButton onMouseClicked="#handleRemoveAll" style="-fx-background-color: grey;" text="Remove All" />
                   <JFXButton onMouseClicked="#handleRemove" style="-fx-background-color: white;" text="Remove">
                      <HBox.margin>
                         <Insets right="5.0" />
