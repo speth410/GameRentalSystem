@@ -20,21 +20,21 @@ public class DashboardController {
   @FXML private ScrollPane spGames;
   @FXML private HBox hBox;
   @FXML private Label topPanelTxt;
-  @FXML private Button butttonAG;
+  @FXML private Button btnAddGame;
   @FXML private Button butttonLogout;
 
-
   private Connection connection = null;
-  private static String currentUser = null;
+  private static User currentUser = null;
   private File selectedFile;
   private Stage dashboardStage = new Stage();
   private FileChooser fileChooser = new FileChooser();
 
   @FXML public BorderPane borderpane;
 
-  public DashboardController(String username) {
+  public DashboardController(User currentUser) {
     // Save the current users username
-    currentUser = username;
+    // currentUser = username;
+    DashboardController.currentUser = currentUser;
 
     // Create new stage
     Stage dashboardStage = new Stage();
@@ -63,19 +63,18 @@ public class DashboardController {
   public void initialize() throws SQLException {
 
     // Test to show that the dashboard knows who is logged in.
-    System.out.println("Dashboard Controller -> Logged in as: " + currentUser);
-    topPanelTxt.setText(currentUser);
+    System.out.println("Dashboard Controller -> Logged in as: " + currentUser.getUsername());
+    topPanelTxt.setText(currentUser.getUsername());
 
-    if (currentUser.equals("admin")) {
-
-    } else {
-      butttonAG.setOpacity(0);
-      butttonAG.setDisable(true);
+    if (!currentUser.getUsername().equals("admin")) {
+      btnAddGame.setOpacity(0);
+      btnAddGame.setDisable(true);
     }
   }
 
   /**
    * logout
+   *
    * @param event
    */
   @FXML
@@ -104,7 +103,7 @@ public class DashboardController {
 
   @FXML
   void handleAddGame(ActionEvent event) {
-    if (currentUser.equals("admin")) {
+    if (currentUser.getUsername().equals("admin")) {
       Dialog<ButtonType> addGame = new Dialog<>();
       addGame.setTitle("Add a New Game");
       addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
@@ -199,9 +198,6 @@ public class DashboardController {
           ex.printStackTrace();
         }
       }
-    } else {
-      butttonAG.setOpacity(0);
-      butttonAG.setDisable(true);
     }
   }
 
@@ -240,7 +236,9 @@ public class DashboardController {
     borderpane.setCenter(root);
   }
 
-  public static String getCurrentUser() {
+  public static User getCurrentUser() {
+    System.out.println(
+        "Getting current user from DashboardController. " + currentUser.getUsername());
     return currentUser;
   }
 }

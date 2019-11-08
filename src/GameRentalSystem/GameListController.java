@@ -56,7 +56,6 @@ public class GameListController {
     // Dynamically create GUI elements to show the games stored in the database.
     showGames();
 
-    System.out.println("GamesList Logged in as " + DashboardController.getCurrentUser());
   }
 
   @FXML
@@ -134,7 +133,7 @@ public class GameListController {
       Label gameTitle = labelList.get(i);
       gameTitle.getStyleClass().add("gameTitle");
 
-      Label gamePrice = priceList.get(i);
+      Label gamePrice = labelList.get(i);
       gamePrice.getStyleClass().add("gamePrice");
 
       // Create a VBox for each game to contain the ImageView and Label

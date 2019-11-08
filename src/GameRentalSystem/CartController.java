@@ -13,11 +13,12 @@ public class CartController {
   @FXML private TableView<Game> tvCart;
   @FXML private TableColumn<Game, String> colTitle;
   private ArrayList<Game> cartList = new ArrayList<>();
-  private String currentUser;
+  private User currentUser;
 
   public void initialize() {
     cartList = GameListController.getCartList();
     currentUser = DashboardController.getCurrentUser();
+
     showCart();
   }
 
@@ -78,7 +79,7 @@ public class CartController {
       try {
         String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
-        ps.setString(1, currentUser);
+        ps.setString(1, currentUser.getUsername());
 
         ResultSet rs = ps.executeQuery();
         if (rs.next()) {

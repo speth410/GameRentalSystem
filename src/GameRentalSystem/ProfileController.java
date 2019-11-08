@@ -23,22 +23,25 @@ import java.util.Optional;
 
 public class ProfileController {
 
-  private String currentUser = null;
-  private Connection connection = null;
-  public Text txtDisplayUserName;
   @FXML public BorderPane borderpane; // belongs to UserInterface
-  @FXML public Text txtDisplayFirstName;
-  @FXML public Text txtDisplayLastName;
-  @FXML public Text txtDisplayAge;
-  @FXML public Text txtDisplayGender;
   @FXML public Text txtDisplayEmail;
   @FXML private ScrollPane spRentals;
   @FXML private TilePane tpRentals;
+  @FXML private Label lblUsername;
+  @FXML private Label lblFirstName;
+  @FXML private Label lblLastName;
+  @FXML private Label lblAge;
+  @FXML private Label lblGender;
+  @FXML private Label lblEmail;
 
+  private User currentUser = null;
+  private Connection connection = null;
   private ArrayList<Game> cartList = new ArrayList<>();
 
   @FXML
   public void initialize() throws SQLException {
+    currentUser = DashboardController.getCurrentUser();
+
     // Initialize the database and store the connection for later use.
     connection = dbHandler.initializeDB();
     cartList = GameListController.getCartList();
@@ -51,19 +54,18 @@ public class ProfileController {
     ArrayList<Integer> gameIds = getOrders();
     ArrayList<Game> games = getGames(gameIds);
     showRentals(games);
-
   }
 
   public void showRentals(ArrayList<Game> games) {
-    for (int i = 0; i < games.size(); i++) {
+    for (Game game : games) {
 
       // Copy the ImageView in imageList, resize, and put it back.
-      ImageView image = new ImageView(games.get(i).getGameImage());
+      ImageView image = new ImageView(game.getGameImage());
       image.setFitHeight(100);
       image.setFitWidth(60);
       image.getStyleClass().add("gameImage");
 
-      Label gameTitle = new Label(games.get(i).getGameTitle());
+      Label gameTitle = new Label(game.getGameTitle());
       gameTitle.getStyleClass().add("gameTitle");
 
       // Create a VBox for each game to contain the ImageView and Label
@@ -83,11 +85,11 @@ public class ProfileController {
     ArrayList<Game> game = new ArrayList<>();
 
     try {
-      for (int i = 0; i < gameId.size(); i++) {
+      for (Integer integer : gameId) {
         String sql = "SELECT * FROM GAMES WHERE GAME_ID = ?";
         PreparedStatement ps = conn.prepareStatement(sql);
 
-        ps.setInt(1, gameId.get(i));
+        ps.setInt(1, integer);
 
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
@@ -145,7 +147,7 @@ public class ProfileController {
     try {
       String sql = "SELECT USER_ID FROM USERS WHERE USERNAME = ?";
       PreparedStatement ps = conn.prepareStatement(sql);
-      ps.setString(1, DashboardController.getCurrentUser());
+      ps.setString(1, currentUser.getUsername());
 
       ResultSet rs = ps.executeQuery();
 
@@ -159,23 +161,13 @@ public class ProfileController {
   }
 
   public void getAccountInfo() {
-    String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
-    try {
-      PreparedStatement stmt = connection.prepareStatement(sql);
-      stmt.setString(1, currentUser);
-      ResultSet resultSetGetAccountInfo = stmt.executeQuery();
 
-      while (resultSetGetAccountInfo.next()) {
-        txtDisplayUserName.setText(currentUser);
-        txtDisplayFirstName.setText(resultSetGetAccountInfo.getString("FIRST_NAME"));
-        txtDisplayLastName.setText(resultSetGetAccountInfo.getString("LAST_NAME"));
-        txtDisplayAge.setText(resultSetGetAccountInfo.getString("AGE"));
-        txtDisplayGender.setText(resultSetGetAccountInfo.getString("GENDER"));
-        txtDisplayEmail.setText(resultSetGetAccountInfo.getString("EMAIL"));
-      }
-    } catch (SQLException e) {
-      e.printStackTrace();
-    }
+    lblUsername.setText(currentUser.getUsername());
+    lblFirstName.setText(currentUser.getFirstName());
+    lblLastName.setText(currentUser.getLastName());
+    lblAge.setText(Integer.toString(currentUser.getAge()));
+    lblGender.setText(currentUser.getGender());
+    lblEmail.setText(currentUser.getEmail());
   }
 
   @FXML

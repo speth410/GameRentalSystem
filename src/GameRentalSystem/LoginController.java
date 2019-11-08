@@ -54,12 +54,14 @@ public class LoginController {
         } else {
           System.out.println("Login Successful");
 
+          User currentUser = new User(username, password);
+
           // Get stage containing btnLogin and close it
           Stage stage = (Stage) btnLogin.getScene().getWindow();
           stage.close();
 
           // Create dashboard controller
-          DashboardController dashboard = new DashboardController(username);
+          DashboardController dashboard = new DashboardController(currentUser);
         }
       } catch (Exception e) {
         e.printStackTrace();
@@ -93,12 +95,14 @@ public class LoginController {
       } else {
         System.out.println("Login Successful");
 
+        User currentUser = new User(username, password);
+
         // Get stage containing btnLogin and close it
         Stage stage = (Stage) btnLogin.getScene().getWindow();
         stage.close();
 
         // Create dashboard controller
-        DashboardController dashboard = new DashboardController(username);
+        DashboardController dashboard = new DashboardController(currentUser);
       }
     } catch (Exception e) {
       e.printStackTrace();

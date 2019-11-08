@@ -35,6 +35,7 @@ public class dbHandler {
       e.printStackTrace();
     }
   }
+
   public static void close(PreparedStatement ps) {
     try {
       ps.close();
@@ -43,6 +44,7 @@ public class dbHandler {
       e.printStackTrace();
     }
   }
+
   public static void close(Connection conn) {
     try {
       conn.close();

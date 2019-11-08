@@ -1,5 +1,10 @@
 package GameRentalSystem;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class User {
   private String username;
   private String password;
@@ -24,6 +29,39 @@ public class User {
     this.age = age;
     this.gender = gender;
     this.email = email;
+  }
+
+  public User (String username, String password) {
+    this.username = username;
+    this.password = password;
+
+    getUserInfo();
+  }
+
+  private void getUserInfo() {
+    Connection conn = dbHandler.initializeDB();
+
+    try {
+      String sql = "SELECT * FROM USERS WHERE USERNAME = ?";
+      PreparedStatement ps = conn.prepareStatement(sql);
+      ps.setString(1, username);
+
+      ResultSet rs = ps.executeQuery();
+      while(rs.next()) {
+        username = rs.getString("USERNAME");
+        password = rs.getString("PASSWORD");
+        firstName = rs.getString("FIRST_NAME");
+        lastName = rs.getString("LAST_NAME");
+        age = rs.getInt("AGE");
+        gender = rs.getString("GENDER");
+        email = rs.getString("EMAIL");
+      }
+      dbHandler.close(rs);
+      dbHandler.close(ps);
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    dbHandler.close(conn);
   }
 
   public String getUsername() {
