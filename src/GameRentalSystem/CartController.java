@@ -73,9 +73,8 @@ public class CartController {
     tvCart.getItems().remove(game);
     cartList.remove(game);
 
-
-    // Pass the updated cartList back to the GameListController to reflect the changes.
-    GameListController.setCartList(cartList);
+    // Pass the updated cartList back to the currentUser to reflect the changes.
+    currentUser.setCartList(cartList);
   }
 
   @FXML
@@ -85,7 +84,7 @@ public class CartController {
     tvCart.getItems().clear();
     cartList.clear();
 
-    // Pass the updated cartList back to the GameListController to reflect the changes.
+    // Pass the updated cartList back to the currentUser to reflect the changes.
     currentUser.setCartList(cartList);
   }
 

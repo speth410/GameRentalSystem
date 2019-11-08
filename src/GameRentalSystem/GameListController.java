@@ -47,7 +47,7 @@ public class GameListController {
     // Get the current user
     currentUser = DashboardController.getCurrentUser();
 
-    // Get the users cartList
+    // Get the users cartList.
     cartList = currentUser.getCartList();
 
     // Get Connection from dbHandler
