@@ -61,7 +61,7 @@ public class ProfileController {
 
     for (Game game : games) {
 
-      // Copy the ImageView in imageList, resize, and put it back.
+      // Copy the ImageView in imageList, resize, and put it back.//
       ImageView image = new ImageView(game.getGameImage());
       image.setFitHeight(100);
       image.setFitWidth(60);
