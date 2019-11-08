@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import sun.java2d.cmm.Profile;
 
 import java.io.*;
 import java.sql.Connection;
@@ -56,6 +57,8 @@ public class ProfileController {
   }
 
   public void showRentals(ArrayList<Game> games) {
+    tpRentals.getChildren().clear();
+
     for (Game game : games) {
 
       // Copy the ImageView in imageList, resize, and put it back.
@@ -176,18 +179,18 @@ public class ProfileController {
     emailChange.setHeaderText("Enter a new email");
 
     // labels to instruct the user to enter information
-    Label lblOldPassword = new Label("old password: ");
-    Label lblNewPassword = new Label("new password: ");
+    Label lblOldEmail = new Label("Old Email: ");
+    Label lblNewEmail = new Label("New Email: ");
 
     // text fields to obtain the user input for each
-    TextField txtOldPassword = new TextField();
-    TextField txtNewPassword = new TextField();
+    TextField txtOldEmail = new TextField(currentUser.getEmail());
+    TextField txtNewEmail = new TextField();
 
     GridPane grid = new GridPane();
-    grid.add(lblOldPassword, 1, 1);
-    grid.add(txtOldPassword, 2, 1);
-    grid.add(lblNewPassword, 1, 2);
-    grid.add(txtNewPassword, 2, 2);
+    grid.add(lblOldEmail, 1, 1);
+    grid.add(txtOldEmail, 2, 1);
+    grid.add(lblNewEmail, 1, 2);
+    grid.add(txtNewEmail, 2, 2);
 
     // attaching the grid pane to the dialog pane
     emailChange.getDialogPane().setContent(grid);
@@ -202,5 +205,25 @@ public class ProfileController {
         .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
 
     Optional<ButtonType> result = emailChange.showAndWait();
+    if (result.isPresent() && result.get() == btnSubmit) {
+      Connection conn = dbHandler.initializeDB();
+      if (conn != null) {
+        try {
+          String sql = "UPDATE USERS SET EMAIL = ? WHERE USERNAME = ?";
+          PreparedStatement ps = conn.prepareStatement(sql);
+          ps.setString(1, txtNewEmail.getText());
+          ps.setString(2, currentUser.getUsername());
+
+          ps.executeUpdate();
+          currentUser.setEmail(txtNewEmail.getText());
+
+          initialize();
+          dbHandler.close(ps);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+        dbHandler.close(conn);
+      }
+    }
   }
 }
