@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Optional;
 
 public class DashboardController {
@@ -84,6 +85,9 @@ public class DashboardController {
 
     // Load the FXML file
     try {
+      ArrayList<Game> cartList = new ArrayList<>();
+      currentUser.setCartList(cartList);
+
       FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
       // Load the scene

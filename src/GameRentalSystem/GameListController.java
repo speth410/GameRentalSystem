@@ -39,9 +39,16 @@ public class GameListController {
   private List<Label> labelList = new ArrayList<>();
   private List<Label> priceList = new ArrayList<>();
   private static ArrayList<Game> cartList = new ArrayList<>();
+  private User currentUser;
 
   @FXML
   public void initialize() throws SQLException {
+
+    // Get the current user
+    currentUser = DashboardController.getCurrentUser();
+
+    // Get the users cartList
+    cartList = currentUser.getCartList();
 
     // Get Connection from dbHandler
     connection = dbHandler.initializeDB();
@@ -157,6 +164,7 @@ public class GameListController {
                 System.out.println(game.getGameTitle() + " Added to cart.");
               }
             }
+            currentUser.setCartList(cartList);
           });
 
       // Add the VBox containing the games image and title to the TilePane
@@ -260,13 +268,5 @@ public class GameListController {
         ex.printStackTrace();
       }
     }
-  }
-
-  public static ArrayList<Game> getCartList() {
-    return cartList;
-  }
-
-  public static void setCartList(ArrayList<Game> cartList) {
-    GameListController.cartList = cartList;
   }
 }

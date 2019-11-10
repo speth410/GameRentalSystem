@@ -16,13 +16,17 @@ public class CartController {
   private User currentUser;
 
   public void initialize() {
-    cartList = GameListController.getCartList();
     currentUser = DashboardController.getCurrentUser();
+    //cartList = GameListController.getCartList();
+    cartList = currentUser.getCartList();
+
 
     showCart();
   }
 
   private void showCart() {
+    tvCart.getItems().clear();
+
     // Make the column and add it to the Table View
     colTitle.setCellValueFactory(new PropertyValueFactory<>("gameTitle"));
     colTitle.getStyleClass().add("gameTitleColumn");
@@ -50,6 +54,8 @@ public class CartController {
         ps.executeUpdate();
       }
 
+      cartList.clear();
+      currentUser.setCartList(cartList);
       dbHandler.close(ps);
       dbHandler.close(conn);
     } catch (SQLException e) {
@@ -68,7 +74,7 @@ public class CartController {
     cartList.remove(game);
 
     // Pass the updated cartList back to the GameListController to reflect the changes.
-    GameListController.setCartList(cartList);
+    currentUser.setCartList(cartList);
   }
 
   private int getUserId() {

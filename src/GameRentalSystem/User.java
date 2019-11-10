@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class User {
   private String username;
@@ -13,6 +14,7 @@ public class User {
   private int age;
   private String gender;
   private String email;
+  private ArrayList<Game> cartList = new ArrayList<>();
 
   public User(
       String username,
@@ -62,6 +64,19 @@ public class User {
       e.printStackTrace();
     }
     dbHandler.close(conn);
+  }
+
+  public ArrayList<Game> getCartList() {
+    return cartList;
+  }
+
+  public void setCartList(ArrayList<Game> cartList) {
+    this.cartList = cartList;
+    System.out.println("CartList: " + cartList.size());
+  }
+
+  public void clearCartList() {
+    cartList.clear();
   }
 
   public String getUsername() {

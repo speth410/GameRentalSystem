@@ -44,7 +44,7 @@ public class ProfileController {
 
     // Initialize the database and store the connection for later use.
     connection = dbHandler.initializeDB();
-    cartList = GameListController.getCartList();
+    cartList = currentUser.getCartList();
 
     getAccountInfo();
 
