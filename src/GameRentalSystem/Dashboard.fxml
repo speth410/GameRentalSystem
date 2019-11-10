@@ -17,7 +17,6 @@
     <left>
         <VBox prefHeight="500.0" prefWidth="187.0" style="-fx-background-color: #2A2E37;" BorderPane.alignment="CENTER">
             <children>
-                <Label prefHeight="24.0" prefWidth="95.0" text="Welcome Back," textFill="WHITE" />
                 <Label fx:id="topPanelTxt" alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
                     <font>
                         <Font name="Ebrima" size="21.0" />
@@ -26,6 +25,7 @@
                         <Insets />
                     </VBox.margin>
                 </Label>
+                <Label prefHeight="24.0" prefWidth="95.0" text="Welcome Back," textFill="WHITE" translateX="5.0" translateY="-80.0" />
                 <HBox prefHeight="27.0" prefWidth="187.0">
                     <children>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
@@ -99,7 +99,7 @@
                 </Button>
             <Button fx:id="butttonLogout" contentDisplay="TOP" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#logoutClicked" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Logout" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" translateX="7.0">
+                  <ImageView fitHeight="60.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" scaleY="0.9" translateX="7.0">
                      <image>
                         <Image url="@images/Exit.png" />
                      </image>
