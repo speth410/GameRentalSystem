@@ -1,5 +1,7 @@
 package GameRentalSystem;
 
+import javafx.animation.FadeTransition;
+import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.*;
 import java.sql.*;
@@ -17,6 +20,7 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class DashboardController {
+
   @FXML private TilePane tpGames;
   @FXML private ScrollPane spGames;
   @FXML private HBox hBox;
@@ -62,7 +66,6 @@ public class DashboardController {
   //
   @FXML
   public void initialize() throws SQLException {
-
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser.getUsername());
     topPanelTxt.setText(currentUser.getUsername());
@@ -103,6 +106,15 @@ public class DashboardController {
       e.printStackTrace();
     }
     System.out.println("logout Clicked");
+  }
+
+  private void makeSlide(){
+    TranslateTransition translate = new TranslateTransition();
+    translate.setDuration(Duration.seconds(.4));
+    translate.setFromX(borderpane.getWidth());
+    translate.setToX(0);
+    translate.setNode(borderpane.getCenter());
+    translate.play();
   }
 
   @FXML
@@ -238,6 +250,7 @@ public class DashboardController {
       e.printStackTrace();
     }
     borderpane.setCenter(root);
+    makeSlide();
   }
 
   public static User getCurrentUser() {
