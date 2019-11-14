@@ -17,14 +17,15 @@ public class CartController {
 
   public void initialize() {
     currentUser = DashboardController.getCurrentUser();
-    //cartList = GameListController.getCartList();
-    cartList = currentUser.getCartList();
 
+    cartList = currentUser.getCartList();
 
     showCart();
   }
 
   private void showCart() {
+
+    // Clear the TableView to prevent possible duplicates
     tvCart.getItems().clear();
 
     // Make the column and add it to the Table View
@@ -42,24 +43,30 @@ public class CartController {
   @FXML
   void handleCheckout(MouseEvent event) {
     Connection conn = dbHandler.initializeDB();
-    try {
-      String sql = "INSERT INTO ORDERS(USER_ID, RENTAL_DATE, GAME_ID) VALUES (?,?,?)";
-      PreparedStatement ps = conn.prepareStatement(sql);
 
-      for (Game game : cartList) {
-        ps.setInt(1, getUserId());
-        ps.setDate(2, new Date(new java.util.Date().getTime()));
-        ps.setInt(3, getGameId(game.getGameTitle()));
+    if (conn != null) {
+      try {
+        String sql = "INSERT INTO ORDERS(USER_ID, RENTAL_DATE, GAME_ID) VALUES (?,?,?)";
+        PreparedStatement ps = conn.prepareStatement(sql);
 
-        ps.executeUpdate();
+        // For each Game object stored inside cartList
+        for (Game game : cartList) {
+          ps.setInt(1, getUserId());
+          ps.setDate(2, new Date(new java.util.Date().getTime()));
+          ps.setInt(3, getGameId(game.getGameTitle()));
+
+          ps.executeUpdate();
+        }
+
+        // Clear the users Cart and update it within the user class.
+        cartList.clear();
+        currentUser.setCartList(cartList);
+
+        dbHandler.close(ps);
+        dbHandler.close(conn);
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
-
-      cartList.clear();
-      currentUser.setCartList(cartList);
-      dbHandler.close(ps);
-      dbHandler.close(conn);
-    } catch (SQLException e) {
-      e.printStackTrace();
     }
   }
 

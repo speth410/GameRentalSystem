@@ -1,6 +1,5 @@
 package GameRentalSystem;
 
-import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -66,6 +65,7 @@ public class DashboardController {
   //
   @FXML
   public void initialize() throws SQLException {
+
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser.getUsername());
     topPanelTxt.setText(currentUser.getUsername());
@@ -106,15 +106,6 @@ public class DashboardController {
       e.printStackTrace();
     }
     System.out.println("logout Clicked");
-  }
-
-  private void makeSlide(){
-    TranslateTransition translate = new TranslateTransition();
-    translate.setDuration(Duration.seconds(.4));
-    translate.setFromX(borderpane.getWidth());
-    translate.setToX(0);
-    translate.setNode(borderpane.getCenter());
-    translate.play();
   }
 
   @FXML
@@ -215,6 +206,22 @@ public class DashboardController {
         }
       }
     }
+  }
+
+  private void makeSlide(){
+    TranslateTransition translate = new TranslateTransition();
+    translate.setDuration(Duration.seconds(.2));
+
+    translate.setFromX(borderpane.getWidth());
+    translate.setToX(0);
+
+    translate.setFromY(borderpane.getHeight());
+    translate.setToY(0);
+
+
+    translate.setNode(borderpane.getCenter());
+
+    translate.play();
   }
 
   // Show the GameList.fxml

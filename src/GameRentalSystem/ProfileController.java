@@ -6,10 +6,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.TilePane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import sun.java2d.cmm.Profile;
 
@@ -33,6 +30,7 @@ public class ProfileController {
   @FXML private Label lblAge;
   @FXML private Label lblGender;
   @FXML private Label lblEmail;
+  @FXML private HBox hBoxRentals;
 
   private User currentUser = null;
   private Connection connection = null;
@@ -48,16 +46,19 @@ public class ProfileController {
 
     getAccountInfo();
 
-    tpRentals.prefHeightProperty().bind(spRentals.heightProperty());
-    tpRentals.prefWidthProperty().bind(spRentals.widthProperty());
+    hBoxRentals.prefHeightProperty().bind(spRentals.heightProperty());
 
     ArrayList<Integer> gameIds = getOrders();
     ArrayList<Game> games = getGames(gameIds);
+
+    spRentals.setMaxHeight(140);
+    spRentals.setPrefHeight(140);
+
     showRentals(games);
   }
 
   public void showRentals(ArrayList<Game> games) {
-    tpRentals.getChildren().clear();
+    hBoxRentals.getChildren().clear();
 
     for (Game game : games) {
 
@@ -72,13 +73,15 @@ public class ProfileController {
 
       // Create a VBox for each game to contain the ImageView and Label
       VBox vBox = new VBox();
+      vBox.setMaxWidth(150);
+      vBox.setPrefWidth(150);
       vBox.setAlignment(Pos.TOP_CENTER);
       vBox.getStyleClass().add("gameBox");
 
       // Add the ImageView and Label to the VBox
       vBox.getChildren().addAll(gameTitle, image);
 
-      tpRentals.getChildren().add(vBox);
+      hBoxRentals.getChildren().add(vBox);
     }
   }
 
