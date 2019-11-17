@@ -9,3 +9,7 @@
 .lblMyProfile {
     -fx-text-fill: white;
 }
+
+font {
+    -fx-font-family: "Netflix Sans";
+}

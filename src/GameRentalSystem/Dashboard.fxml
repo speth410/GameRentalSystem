@@ -5,7 +5,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
@@ -17,7 +16,7 @@
     <left>
         <VBox prefHeight="500.0" prefWidth="187.0" style="-fx-background-color: #2A2E37;" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="topPanelTxt" alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel" textFill="#2a2e37">
+                <Label fx:id="topPanelTxt" alignment="CENTER" prefHeight="80.0" prefWidth="218.0" style="-fx-background-color: #7161Ef;" text="Admin Panel">
                     <font>
                         <Font name="Ebrima" size="21.0" />
                     </font>
@@ -46,60 +45,57 @@
                         <Insets top="10.0" />
                     </padding>
                 </HBox>
-                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadProfile" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Profile" textFill="WHITE">
+                <Button fx:id="profilebtnbackground" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadProfile" onMouseEntered="#profileHover" onMouseExited="#profileHoverOff" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Profile" textFill="WHITE">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="profilebtn" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/Profile.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadGameList" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Browse Games" textFill="WHITE">
+                <Button fx:id="browseGameBtnBackground" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadGameList" onMouseEntered="#browseGameHover" onMouseExited="#GameHoverOff" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Browse Games" textFill="WHITE">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="browsegamebtn" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/List.png" />
                             </image>
-                            <effect>
-                                <ColorAdjust />
-                            </effect>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadCart" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Item Cart" textFill="WHITE">
+                <Button fx:id="cartBtnBackground" contentDisplay="TOP" mnemonicParsing="false" onMouseClicked="#loadCart" onMouseEntered="#cartHover" onMouseExited="#cartHoverOff" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Item Cart" textFill="WHITE">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="cartbtn" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/CartFull.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-                <Button fx:id="btnAddGame" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAddGame" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Add Game" textFill="WHITE">
+                <Button fx:id="btnAddGame" contentDisplay="TOP" mnemonicParsing="false" onAction="#handleAddGame" onMouseEntered="#addGameBtnHover" onMouseExited="#addGameBtnHoverOff" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Add Game" textFill="WHITE">
                     <VBox.margin>
                         <Insets top="10.0" />
                     </VBox.margin>
                     <graphic>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="addgamebtn" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@images/Save.png" />
                             </image>
                         </ImageView>
                     </graphic>
                 </Button>
-            <Button fx:id="butttonLogout" contentDisplay="TOP" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onMouseClicked="#logoutClicked" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Logout" textFill="WHITE">
+            <Button fx:id="butttonLogout" contentDisplay="TOP" layoutX="10.0" layoutY="434.0" mnemonicParsing="false" onMouseEntered="#logoutHover" onMouseExited="#logoutHoverOff" onMousePressed="#logoutIn" onMouseReleased="#logoutReleased" prefHeight="67.0" prefWidth="197.0" style="-fx-background-color: #2A2E37; -fx-background-radius: 0;" text="Logout" textFill="WHITE">
                <graphic>
-                  <ImageView fitHeight="60.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" scaleY="0.9" translateX="7.0">
+                  <ImageView fx:id="logoutbtn" fitHeight="60.0" fitWidth="96.0" pickOnBounds="true" preserveRatio="true" scaleY="0.9" translateX="7.0">
                      <image>
                         <Image url="@images/Exit.png" />
                      </image>

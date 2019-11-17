@@ -12,10 +12,12 @@ import java.util.Optional;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.effect.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class LoginController {
@@ -28,6 +30,7 @@ public class LoginController {
   @FXML private JFXButton btnLogin;
   @FXML private Label lblError;
   @FXML private JFXButton btnCreateAccount;
+
 
   @FXML
   void handleLoginEnter(KeyEvent event) {
@@ -202,6 +205,7 @@ public class LoginController {
 
   @FXML
   public void initialize() {
-
   }
+
+
 }

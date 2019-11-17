@@ -23,7 +23,7 @@
    <children>
       <VBox fx:id="vbGames" alignment="CENTER" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" styleClass="vbGames" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
-            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="604.0" styleClass="lblGames" text="Cart">
+            <Label alignment="CENTER" maxWidth="1.7976931348623157E308" prefHeight="80.0" prefWidth="604.0" styleClass="lblGames" text="Cart" textFill="WHITE">
                <font>
                   <Font name="Ebrima" size="40.0" />
                </font>

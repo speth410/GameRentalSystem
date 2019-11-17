@@ -1,5 +1,6 @@
 package GameRentalSystem;
 
+import javafx.animation.FadeTransition;
 import javafx.animation.TranslateTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,7 +8,13 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.effect.Blend;
+import javafx.scene.effect.BlendMode;
+import javafx.scene.effect.ColorAdjust;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TouchEvent;
 import javafx.scene.layout.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -19,6 +26,15 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 public class DashboardController {
+
+  @FXML private Button cartBtnBackground;
+  @FXML private Button browseGameBtnBackground;
+  @FXML private Button profilebtnbackground;
+  @FXML private ImageView profilebtn;
+  @FXML private ImageView browsegamebtn;
+  @FXML private ImageView cartbtn;
+  @FXML private ImageView addgamebtn;
+  @FXML private ImageView logoutbtn;
 
   @FXML private TilePane tpGames;
   @FXML private ScrollPane spGames;
@@ -32,6 +48,10 @@ public class DashboardController {
   private File selectedFile;
   private Stage dashboardStage = new Stage();
   private FileChooser fileChooser = new FileChooser();
+  private ColorAdjust colorAdjust = new ColorAdjust();
+  private ColorAdjust colorNormal = new ColorAdjust();
+  private Blend hovereffect = new Blend();
+  private Blend noHoverEffect = new Blend();
 
   @FXML public BorderPane borderpane;
 
@@ -65,10 +85,14 @@ public class DashboardController {
   //
   @FXML
   public void initialize() throws SQLException {
-
     // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser.getUsername());
     topPanelTxt.setText(currentUser.getUsername());
+    colorAdjust.setHue(0.7);
+    colorNormal.setHue(0);
+    hovereffect.setMode(BlendMode.ADD);
+    hovereffect.setOpacity(0.2);
+    noHoverEffect.setOpacity(0);
 
     if (!currentUser.getUsername().equals("admin")) {
       btnAddGame.setOpacity(0);
@@ -82,12 +106,10 @@ public class DashboardController {
    * @param event
    */
   @FXML
-  void logoutClicked(MouseEvent event) {
-    // Create new stage
-    Stage loginStage = new Stage();
-
-    // Load the FXML file
+  void logoutReleased(MouseEvent event) throws InterruptedException {
+    Thread.sleep(1000);
     try {
+      Stage loginStage = new Stage();
       ArrayList<Game> cartList = new ArrayList<>();
       currentUser.setCartList(cartList);
 
@@ -108,9 +130,23 @@ public class DashboardController {
     System.out.println("logout Clicked");
   }
 
+  private void makeSlide() {
+    TranslateTransition translate = new TranslateTransition();
+    translate.setDuration(Duration.seconds(.35));
+    translate.setFromX(borderpane.getWidth());
+    translate.setToX(0);
+    translate.setNode(borderpane.getCenter());
+    translate.play();
+  }
+
   @FXML
   void handleAddGame(ActionEvent event) {
     if (currentUser.getUsername().equals("admin")) {
+      addgamebtn.setEffect(colorAdjust);
+      profilebtn.setEffect(colorNormal);
+      browsegamebtn.setEffect(colorNormal);
+      cartbtn.setEffect(colorNormal);
+      logoutbtn.setEffect(colorNormal);
       Dialog<ButtonType> addGame = new Dialog<>();
       addGame.setTitle("Add a New Game");
       addGame.setHeaderText("Enter the necessary information to add a new game to the system.");
@@ -208,41 +244,6 @@ public class DashboardController {
     }
   }
 
-  private void makeSlide(){
-    TranslateTransition translate = new TranslateTransition();
-    translate.setDuration(Duration.seconds(.2));
-
-    translate.setFromX(borderpane.getWidth());
-    translate.setToX(0);
-
-    translate.setFromY(borderpane.getHeight());
-    translate.setToY(0);
-
-
-    translate.setNode(borderpane.getCenter());
-
-    translate.play();
-  }
-
-  // Show the GameList.fxml
-  @FXML
-  void loadGameList(MouseEvent event) {
-    loadUI("GameList");
-    System.out.println("GameList click");
-  }
-
-  // Show the Profile.fxml
-  @FXML
-  void loadProfile(MouseEvent event) {
-    loadUI("Profile");
-  }
-
-  // Show the Cart
-  @FXML
-  void loadCart(MouseEvent event) {
-    loadUI("Cart");
-  }
-
   @FXML
   void loadReturn(MouseEvent event) {
     borderpane.setCenter(null);
@@ -264,5 +265,97 @@ public class DashboardController {
     System.out.println(
         "Getting current user from DashboardController. " + currentUser.getUsername());
     return currentUser;
+  }
+
+  /** Button Click Effects and LoadUI */
+  @FXML
+  void loadProfile(MouseEvent event) {
+    browsegamebtn.setEffect(colorNormal);
+    cartbtn.setEffect(colorNormal);
+    addgamebtn.setEffect(colorNormal);
+    logoutbtn.setEffect(colorNormal);
+    profilebtn.setEffect(colorAdjust);
+    loadUI("Profile");
+  }
+
+  @FXML
+  void loadGameList(MouseEvent event) {
+    cartbtn.setEffect(colorNormal);
+    profilebtn.setEffect(colorNormal);
+    addgamebtn.setEffect(colorNormal);
+    logoutbtn.setEffect(colorNormal);
+    browsegamebtn.setEffect(colorAdjust);
+    loadUI("GameList");
+    System.out.println("GameList click");
+  }
+
+  @FXML
+  void loadCart(MouseEvent event) {
+    browsegamebtn.setEffect(colorNormal);
+    profilebtn.setEffect(colorNormal);
+    addgamebtn.setEffect(colorNormal);
+    logoutbtn.setEffect(colorNormal);
+    cartbtn.setEffect(colorAdjust);
+    loadUI("Cart");
+  }
+
+  @FXML
+  void logoutIn(MouseEvent event) {
+    logoutbtn.setEffect(colorAdjust);
+    profilebtn.setEffect(colorNormal);
+    browsegamebtn.setEffect(colorNormal);
+    cartbtn.setEffect(colorNormal);
+    addgamebtn.setEffect(colorNormal);
+  }
+
+  /** Button Hover Effects */
+  @FXML
+  void profileHover(MouseEvent event) {
+    profilebtnbackground.setEffect(hovereffect);
+  }
+
+  @FXML
+  void profileHoverOff(MouseEvent event) {
+    profilebtnbackground.setEffect(noHoverEffect);
+  }
+
+  @FXML
+  void browseGameHover(MouseEvent event) {
+    browseGameBtnBackground.setEffect(hovereffect);
+  }
+
+  @FXML
+  void GameHoverOff(MouseEvent event) {
+    browseGameBtnBackground.setEffect(noHoverEffect);
+  }
+
+  @FXML
+  void cartHover(MouseEvent event) {
+    cartBtnBackground.setEffect(hovereffect);
+  }
+
+  @FXML
+  void cartHoverOff(MouseEvent event) {
+    cartBtnBackground.setEffect(noHoverEffect);
+  }
+
+  @FXML
+  void addGameBtnHover(MouseEvent event) {
+    btnAddGame.setEffect(hovereffect);
+  }
+
+  @FXML
+  void addGameBtnHoverOff(MouseEvent event) {
+    btnAddGame.setEffect(noHoverEffect);
+  }
+
+  @FXML
+  void logoutHover(MouseEvent event) {
+    butttonLogout.setEffect(hovereffect);
+  }
+
+  @FXML
+  void logoutHoverOff(MouseEvent event) {
+    butttonLogout.setEffect(noHoverEffect);
   }
 }

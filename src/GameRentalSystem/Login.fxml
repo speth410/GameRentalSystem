@@ -20,8 +20,8 @@
         </ImageView>
         <AnchorPane layoutX="563.0" layoutY="85.0" prefHeight="333.0" prefWidth="315.0">
             <children>
-                <JFXTextField fx:id="txtUserID" focusColor="WHITE" layoutX="62.0" layoutY="151.0" onKeyPressed="#handleLoginEnter" prefHeight="31.0" prefWidth="228.0" promptText="Username" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
-                <JFXPasswordField fx:id="txtUserPass" focusColor="WHITE" layoutX="62.0" layoutY="209.0" onKeyPressed="#handleLoginEnter" prefHeight="31.0" prefWidth="228.0" promptText="Password" style="-fx-background-color: white;" unFocusColor="BLACK">
+                <JFXTextField fx:id="txtUserID" focusColor="#ff5100" layoutX="62.0" layoutY="151.0" onKeyPressed="#handleLoginEnter" prefHeight="31.0" prefWidth="228.0" promptText="Username" style="-fx-background-color: #FFFFFF;" unFocusColor="BLACK" />
+                <JFXPasswordField fx:id="txtUserPass" focusColor="#ff5100" layoutX="62.0" layoutY="209.0" onKeyPressed="#handleLoginEnter" prefHeight="31.0" prefWidth="228.0" promptText="Password" style="-fx-background-color: white;" unFocusColor="BLACK">
                <opaqueInsets>
                   <Insets />
                </opaqueInsets></JFXPasswordField>
@@ -43,11 +43,11 @@
                 </JFXButton>
             </children>
         </AnchorPane>
-        <Label layoutX="372.0" layoutY="57.0" text="Game Rental" textFill="WHITE">
-            <font>
-                <Font size="39.0" />
-            </font>
-        </Label>
+      <Label layoutX="314.0" layoutY="53.0" text="Game Rental" textFill="WHITE">
+         <font>
+            <Font size="48.0" />
+         </font>
+      </Label>
     </children>
     <stylesheets>
         <URL value="@LoginStyleSheet.css" />

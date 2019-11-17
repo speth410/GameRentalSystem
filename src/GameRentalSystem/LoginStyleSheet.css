@@ -6,3 +6,6 @@
     -fx-background-color: green;
 }
 
+Label {
+    -fx-font-family: "Netflix Sans";
+}
