@@ -93,7 +93,7 @@ public class DashboardController {
     hovereffect.setMode(BlendMode.ADD);
     hovereffect.setOpacity(0.2);
     noHoverEffect.setOpacity(0);
-
+    loadUI("Featured");
     if (!currentUser.getUsername().equals("admin")) {
       btnAddGame.setOpacity(0);
       btnAddGame.setDisable(true);
