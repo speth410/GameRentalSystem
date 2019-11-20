@@ -1,0 +1,9 @@
+font {
+    -fx-font-family: "Netflix Sans";
+}
+
+.label{
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+}
+
