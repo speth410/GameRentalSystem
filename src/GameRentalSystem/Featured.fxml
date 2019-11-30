@@ -19,12 +19,12 @@
             <Image url="@images/nextBtn.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="selectImg1" fitHeight="41.0" fitWidth="56.0" layoutX="323.0" layoutY="380.0" opacity="0.9" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9" scaleZ="0.9">
+      <ImageView fx:id="selectImg1" fitHeight="41.0" fitWidth="56.0" layoutX="621.0" layoutY="378.0" opacity="0.9" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9" scaleZ="0.9">
          <image>
             <Image url="@images/buttonSelection.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="selectimg2" fitHeight="41.0" fitWidth="56.0" layoutX="376.0" layoutY="380.0" opacity="0.9" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9" scaleZ="0.9">
+      <ImageView fx:id="selectimg2" fitHeight="41.0" fitWidth="56.0" layoutX="674.0" layoutY="378.0" opacity="0.9" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9" scaleZ="0.9">
          <image>
             <Image url="@images/buttonSelection.png" />
          </image>
