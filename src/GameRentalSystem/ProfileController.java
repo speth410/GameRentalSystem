@@ -173,6 +173,7 @@ public class ProfileController {
     lblAge.setText(Integer.toString(currentUser.getAge()));
     lblGender.setText(currentUser.getGender());
     lblEmail.setText(currentUser.getEmail());
+    txtDisplayEmail.setText(currentUser.getEmail());
   }
 
   @FXML
