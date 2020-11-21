@@ -27,15 +27,6 @@ public class FeatureController {
   Image[] img = {img1, img2};
   private Mediator mediator;
 
-  private void makeFade() {
-    FadeTransition fadeTransition = new FadeTransition();
-    fadeTransition.setNode(featureImg);
-    fadeTransition.setDuration(Duration.seconds(1));
-    fadeTransition.setFromValue(0);
-    fadeTransition.setToValue(1);
-    fadeTransition.play();
-  }
-
   @FXML
   public void initialize() {
     selectImg1.setEffect(hovereffect);
@@ -49,7 +40,6 @@ public class FeatureController {
   @FXML
   void rightClicked(MouseEvent event) {
     mediator.clickedOnRight();
-
   }
 
   @FXML
