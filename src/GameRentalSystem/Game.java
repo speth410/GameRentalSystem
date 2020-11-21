@@ -34,16 +34,8 @@ public class Game {
     return gameTitle;
   }
 
-  public void setGameTitle(String gameTitle) {
-    this.gameTitle = gameTitle;
-  }
-
   public GameGenre getGameGenre() {
     return genre;
-  }
-
-  public void setGameGenre(GameGenre genre) {
-    this.genre = genre;
   }
 
   public FileInputStream getFileIn() {

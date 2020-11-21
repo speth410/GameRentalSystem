@@ -270,42 +270,22 @@ public class DashboardController {
   /** Button Click Effects and LoadUI */
   @FXML
   void loadProfile(MouseEvent event) {
-    browsegamebtn.setEffect(colorNormal);
-    cartbtn.setEffect(colorNormal);
-    addgamebtn.setEffect(colorNormal);
-    logoutbtn.setEffect(colorNormal);
-    profilebtn.setEffect(colorAdjust);
     loadUI("Profile");
   }
 
   @FXML
   void loadGameList(MouseEvent event) {
-    cartbtn.setEffect(colorNormal);
-    profilebtn.setEffect(colorNormal);
-    addgamebtn.setEffect(colorNormal);
-    logoutbtn.setEffect(colorNormal);
-    browsegamebtn.setEffect(colorAdjust);
     loadUI("GameList");
     System.out.println("GameList click");
   }
 
   @FXML
   void loadCart(MouseEvent event) {
-    browsegamebtn.setEffect(colorNormal);
-    profilebtn.setEffect(colorNormal);
-    addgamebtn.setEffect(colorNormal);
-    logoutbtn.setEffect(colorNormal);
-    cartbtn.setEffect(colorAdjust);
     loadUI("Cart");
   }
 
   @FXML
   void logoutIn(MouseEvent event) {
-    logoutbtn.setEffect(colorAdjust);
-    profilebtn.setEffect(colorNormal);
-    browsegamebtn.setEffect(colorNormal);
-    cartbtn.setEffect(colorNormal);
-    addgamebtn.setEffect(colorNormal);
   }
 
   /** Button Hover Effects */
