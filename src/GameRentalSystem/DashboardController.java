@@ -56,24 +56,18 @@ public class DashboardController {
   @FXML public BorderPane borderpane;
 
   public DashboardController(User currentUser) {
-    // Save the current users username
-    // currentUser = username;
     DashboardController.currentUser = currentUser;
 
-    // Create new stage
     Stage dashboardStage = new Stage();
 
     // Load the FXML file
     try {
       FXMLLoader loader = new FXMLLoader(getClass().getResource("Dashboard.fxml"));
 
-      // Set this class as the controller
       loader.setController(this);
 
-      // Load the scene
       dashboardStage.setScene(new Scene(loader.load()));
 
-      // Setup the window/stage
       dashboardStage.setTitle("Dashboard");
       dashboardStage.show();
 
@@ -82,18 +76,20 @@ public class DashboardController {
     }
   }
 
-  //
   @FXML
   public void initialize() throws SQLException {
-    // Test to show that the dashboard knows who is logged in.
     System.out.println("Dashboard Controller -> Logged in as: " + currentUser.getUsername());
+
     topPanelTxt.setText(currentUser.getUsername());
+
     colorAdjust.setHue(0.7);
     colorNormal.setHue(0);
     hovereffect.setMode(BlendMode.ADD);
     hovereffect.setOpacity(0.2);
     noHoverEffect.setOpacity(0);
+
     loadUI("Featured");
+
     if (!currentUser.getUsername().equals("admin")) {
       btnAddGame.setOpacity(0);
       btnAddGame.setDisable(true);
@@ -141,6 +137,31 @@ public class DashboardController {
 
   @FXML
   void handleAddGame(ActionEvent event) {
+
+    Game game = addGameDialog();
+    try {
+      // Insert new game into the database
+      connection = dbHandler.initializeDB();
+
+      String sql =
+          "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE, ESRB_RATING, GENRE, PRICE) VALUES (?, ?, ?, ?, ?)";
+      PreparedStatement ps = connection.prepareStatement(sql);
+      ps.setString(1, game.getGameTitle());
+      ps.setBinaryStream(2, game.getFileIn());
+      ps.setString(3, game.getRating().toString());
+      ps.setString(4, game.getGameGenre().toString());
+      ps.setString(5, game.getPrice());
+
+      ps.executeUpdate();
+
+      dbHandler.close(ps);
+      dbHandler.close(connection);
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }
+  }
+
+  Game addGameDialog() {
     if (currentUser.getUsername().equals("admin")) {
       addgamebtn.setEffect(colorAdjust);
       profilebtn.setEffect(colorNormal);
@@ -194,10 +215,7 @@ public class DashboardController {
       // When the user clicks the TextField for the Game Image.
       txtGameImage.setOnMouseClicked(
           e -> {
-            // Show a file chooser
             selectedFile = fileChooser.showOpenDialog(dashboardStage);
-
-            // Set the text of the text area to the filename of the selected file.
             txtGameImage.setText(selectedFile.getName());
           });
 
@@ -214,34 +232,22 @@ public class DashboardController {
           }
 
           // Create a new Game object.
-          new Game(
-              txtTitle.getText(),
-              cbGenre.getValue(),
-              cbRating.getValue(),
-              txtPrice.getText(),
-              fileIn);
+          Game newGame =
+              new Game(
+                  txtTitle.getText(),
+                  cbGenre.getValue(),
+                  cbRating.getValue(),
+                  txtPrice.getText(),
+                  fileIn);
 
-          // Insert new game into the database
-          connection = dbHandler.initializeDB();
+          return newGame;
 
-          String sql =
-              "INSERT INTO GAMES(GAME_TITLE, GAME_IMAGE, ESRB_RATING, GENRE, PRICE) VALUES (?, ?, ?, ?, ?)";
-          PreparedStatement ps = connection.prepareStatement(sql);
-          ps.setString(1, txtTitle.getText());
-          ps.setBinaryStream(2, fileIn);
-          ps.setString(3, cbRating.getValue().toString());
-          ps.setString(4, cbGenre.getValue().toString());
-          ps.setString(5, txtPrice.getText());
-
-          ps.executeUpdate();
-
-          dbHandler.close(ps);
-          dbHandler.close(connection);
-        } catch (Exception ex) {
-          ex.printStackTrace();
+        } catch (FileNotFoundException e) {
+          e.printStackTrace();
         }
       }
     }
+    return null;
   }
 
   @FXML

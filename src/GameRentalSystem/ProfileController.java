@@ -177,7 +177,7 @@ public class ProfileController {
   }
 
   @FXML
-  void changeEmail(MouseEvent event) {
+  void changeEmailDialog(MouseEvent event) {
     Dialog<ButtonType> emailChange = new Dialog<>();
     emailChange.setTitle("Change Email");
     emailChange.setHeaderText("Enter a new email");
@@ -210,24 +210,28 @@ public class ProfileController {
 
     Optional<ButtonType> result = emailChange.showAndWait();
     if (result.isPresent() && result.get() == btnSubmit) {
-      Connection conn = dbHandler.initializeDB();
-      if (conn != null) {
-        try {
-          String sql = "UPDATE USERS SET EMAIL = ? WHERE USERNAME = ?";
-          PreparedStatement ps = conn.prepareStatement(sql);
-          ps.setString(1, txtNewEmail.getText());
-          ps.setString(2, currentUser.getUsername());
+      changeEmail(txtNewEmail.getText());
+    }
+  }
 
-          ps.executeUpdate();
-          currentUser.setEmail(txtNewEmail.getText());
+  void changeEmail(String email) {
+    Connection conn = dbHandler.initializeDB();
+    if (conn != null) {
+      try {
+        String sql = "UPDATE USERS SET EMAIL = ? WHERE USERNAME = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setString(1, email);
+        ps.setString(2, currentUser.getUsername());
 
-          initialize();
-          dbHandler.close(ps);
-        } catch (SQLException e) {
-          e.printStackTrace();
-        }
-        dbHandler.close(conn);
+        ps.executeUpdate();
+        currentUser.setEmail(email);
+
+        initialize();
+        dbHandler.close(ps);
+      } catch (SQLException e) {
+        e.printStackTrace();
       }
+      dbHandler.close(conn);
     }
   }
 }

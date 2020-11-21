@@ -44,25 +44,18 @@ public class GameListController {
   @FXML
   public void initialize() throws SQLException {
 
-    // Get the current user
     currentUser = DashboardController.getCurrentUser();
 
-    // Get the users cartList.
     cartList = currentUser.getCartList();
 
-    // Get Connection from dbHandler
     connection = dbHandler.initializeDB();
 
     // Bind TilePanes dimensions to the ScrollPane that contains it
     tpGames.prefHeightProperty().bind(spGames.heightProperty());
     tpGames.prefWidthProperty().bind(spGames.widthProperty());
 
-    // Retrieve Games from the database
     getGames();
-
-    // Dynamically create GUI elements to show the games stored in the database.
     showGames();
-
   }
 
   @FXML
@@ -98,10 +91,8 @@ public class GameListController {
         // Load tempFile as Image
         Image image = new Image(tempFile.toURI().toURL().toString());
 
-        // Get game title from database
         String gameTitle = rs.getString("GAME_TITLE");
 
-        // Get game price
         String gamePrice = rs.getString("PRICE");
 
         // Create a new ImageView and Label & store in an arrayList
