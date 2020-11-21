@@ -25,6 +25,7 @@ public class FeatureController {
   Image img1 = new Image("GameRentalSystem/images/feature1.jpg");
   Image img2 = new Image("GameRentalSystem/images/feature2.jpg");
   Image[] img = {img1, img2};
+  private Mediator mediator;
 
   private void makeFade() {
     FadeTransition fadeTransition = new FadeTransition();
@@ -47,42 +48,13 @@ public class FeatureController {
 
   @FXML
   void rightClicked(MouseEvent event) {
-    if (featureImg.getImage() != img[0]) {
-      featureImg.setImage(img[0]);
-      selectimg2.setEffect(hovereffect);
-    }
-    else if(featureImg.getImage() != img[1]) {
-      selectImg1.setEffect(hovereffect);
-      featureImg.setImage(img[1]);
-      }
+    mediator.clickedOnRight();
 
-    if (featureImg.getImage() == img[1]) {
-      selectimg2.setEffect(noHoverEffect);
-    }
-    else if(featureImg.getImage() == img[0]) {
-      selectImg1.setEffect(noHoverEffect);
-    }
-
-      makeFade();
   }
 
   @FXML
   void leftClicked(MouseEvent event) {
-    if (featureImg.getImage() != img[1]) {
-      featureImg.setImage(img[1]);
-      selectImg1.setEffect(hovereffect);
-    }
-    else if(featureImg.getImage() != img[0]) {
-        selectimg2.setEffect(hovereffect);
-        featureImg.setImage(img[0]);
-    }
-      if (featureImg.getImage() == img[0]) {
-          selectImg1.setEffect(noHoverEffect);
-      }
-      else if(featureImg.getImage() == img[1]) {
-          selectimg2.setEffect(noHoverEffect);
-      }
-    makeFade();
+    mediator.clickedOnLeft();
   }
 
   /** Effects */
