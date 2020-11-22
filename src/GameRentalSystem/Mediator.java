@@ -1,14 +1,14 @@
 package GameRentalSystem;
 
-import javafx.animation.FadeTransition;
+import javafx.animation.*;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.effect.Blend;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.util.Duration;
-
 import java.util.Random;
 
 public class Mediator {
@@ -25,7 +25,6 @@ public class Mediator {
     Image img1 = new Image("GameRentalSystem/images/feature1.jpg");
     Image img2 = new Image("GameRentalSystem/images/feature2.jpg");
     Image[] img = {img1, img2};
-
 
     public void makeFader(){
         FadeTransition fadeTransition = new FadeTransition();

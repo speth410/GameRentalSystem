@@ -49,7 +49,6 @@ public class LoginController {
         preparedStatement.setString(2, password);
         resultSet = preparedStatement.executeQuery();
 
-        // If the login failed
         if (!resultSet.next()) {
           lblError.setStyle("-fx-text-fill: red");
           lblError.setText("Incorrect Username/Password");
