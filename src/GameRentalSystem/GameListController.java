@@ -27,6 +27,7 @@ public class GameListController {
   @FXML private TableView<CartItem> tvCart;
   @FXML private TableColumn<CartItem, String> colTitle;
   @FXML private TableColumn<?, ?> colRemove;
+  @FXML private TextArea consoleText;
 
   private Game game;
   private Connection connection = null;
@@ -171,6 +172,7 @@ public class GameListController {
       tpGames.getChildren().add(vBox);
     }
   }
+  
 
   @FXML
   void handleAddGame(ActionEvent event) {
@@ -232,6 +234,7 @@ public class GameListController {
     // Show the dialog and set event handler on submit button
     Optional<ButtonType> result = addGame.showAndWait();
     if (result.isPresent() && result.get() == btnSubmit) {
+
       try {
 
         // Initialize fileIn as null to avoid a NullPointerException if the user doesn't add an
@@ -263,10 +266,14 @@ public class GameListController {
         // Test to show all of the Game objects stored within the games ArrayList.
         for (Game game : gamesList) {
           game.print();
+          consoleText.setText("New game has been added Genre" + cbGenre.getValue());
+          System.out.println("New game has been added Genre");
         }
       } catch (Exception ex) {
         ex.printStackTrace();
       }
+
     }
+
   }
 }

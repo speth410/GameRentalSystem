@@ -16,6 +16,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class ProfileController {
@@ -30,7 +31,10 @@ public class ProfileController {
   @FXML private Label lblAge;
   @FXML private Label lblGender;
   @FXML private Label lblEmail;
+  @FXML private Label preference;
   @FXML private HBox hBoxRentals;
+  @FXML private List<ImageView> imageList = new ArrayList<>();
+
 
   private User currentUser = null;
   private Connection connection = null;
@@ -175,6 +179,77 @@ public class ProfileController {
     lblEmail.setText(currentUser.getEmail());
     txtDisplayEmail.setText(currentUser.getEmail());
   }
+
+  @FXML
+  void prefGameList(MouseEvent event) {
+    Dialog<ButtonType> gamePref = new Dialog<>();
+    gamePref.setTitle("Change Game Preference");
+    gamePref.setHeaderText("Enter a game genre");
+
+    // labels to instruct the user to enter information
+    Label lblAdventure = new Label("Adventure: ");
+    Label lblAction = new Label("Action: ");
+    Label lblFPS = new Label("FPS: ");
+    Label lblRPG = new Label("RPG: ");
+    Label lblStrategy = new Label("Strategy: ");
+
+    // text fields to obtain the user input for each
+    TextField txtAdventure = new TextField();
+    TextField txtAction = new TextField();
+    TextField txtFPS = new TextField();
+    TextField txtRPG = new TextField();
+    TextField txtStrategy = new TextField();
+
+    GridPane grid = new GridPane();
+    grid.add(lblAdventure, 1, 1);
+    grid.add(txtAdventure, 2, 1);
+    grid.add(lblAction, 1, 2);
+    grid.add(txtAction, 2, 2);
+    grid.add(lblFPS, 1, 3);
+    grid.add(txtFPS, 2, 3);
+    grid.add(lblRPG, 1, 4);
+    grid.add(txtRPG, 2, 4);
+    grid.add(lblStrategy, 1, 5);
+    grid.add(txtStrategy, 2, 5);
+
+    // attaching the grid pane to the dialog pane
+    gamePref.getDialogPane().setContent(grid);
+
+    // creates the submit button
+    ButtonType btnSubmit = new ButtonType("Submit");
+
+    gamePref.getDialogPane().getButtonTypes().add(btnSubmit);
+    gamePref
+            .getDialogPane()
+            .getButtonTypes()
+            .add(new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE));
+
+    Optional<ButtonType> result = gamePref.showAndWait();
+    if (result.isPresent() && result.get() == btnSubmit) {
+      Connection conn = dbHandler.initializeDB();
+      if (conn != null) {
+        try {
+          String sql = "SELECT * FROM GAMES WHERE GENRE";
+
+
+          PreparedStatement ps = conn.prepareStatement(sql);
+
+          ps.executeUpdate();
+          //currentUser.setCartList(gamePref.getOnShowing();
+
+          initialize();
+          dbHandler.close(ps);
+        } catch (SQLException e) {
+          e.printStackTrace();
+        }
+        dbHandler.close(conn);
+      }
+
+      //imageList.add(new ImageView(gamePref));
+
+    }
+  }
+
 
   @FXML
   void changeEmail(MouseEvent event) {

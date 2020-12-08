@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -20,6 +21,7 @@
             <Font size="38.0" />
          </font>
       </Label>
+      <Text fill="#7b29ff" onMouseClicked="#prefGameList" strokeType="OUTSIDE" strokeWidth="0.0" text="Preferences" />
       <Separator prefHeight="4.0" prefWidth="600.0" />
       <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="154.0" prefWidth="592.0">
          <columnConstraints>
@@ -41,6 +43,7 @@
             <Label onMouseClicked="#changeEmail" styleClass="lblChange" text="Change email" GridPane.columnIndex="2" GridPane.rowIndex="1" />
             <Label styleClass="lblChange" text="Change password" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             <Label styleClass="lblChange" text="Change #" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+            <TextArea fx:id="consoleText" prefHeight="200.0" prefWidth="200.0" promptText="waiting. . ." />
          </children>
       </GridPane>
       <Separator prefHeight="4.0" prefWidth="600.0" />

@@ -12,7 +12,7 @@ import javafx.util.Duration;
 
 import java.util.Random;
 
-public class FeatureController extends Mediator{
+public class FeatureController{
 
   @FXML private Label titleLbl;
   @FXML private ImageView featureImg;
@@ -25,7 +25,9 @@ public class FeatureController extends Mediator{
   Image img1 = new Image("GameRentalSystem/images/feature1.jpg");
   Image img2 = new Image("GameRentalSystem/images/feature2.jpg");
   Image[] img = {img1, img2};
-  private Mediator mediator;
+  Mediator mediator = new Mediator();
+
+
   @FXML
   public void initialize() {
     selectImg1.setEffect(hovereffect);
