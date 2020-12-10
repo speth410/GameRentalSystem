@@ -21,8 +21,6 @@ Game rental system GUI software application
 **Summary**
 Game Rental system software with the ability to order games remotely from your computer. 
 
-![GameRentalSystem](https://ibb.co/SKzsXYG)
-
 **Code Style**
 Primary code within this system is Java and JavaFx with some CSS for design.
 
